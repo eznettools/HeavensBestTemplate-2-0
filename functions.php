@@ -83,7 +83,7 @@ function wpdocs_theme_setup() {
  
 
 
-
+/*---- Add Theme Options Page -------*/
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
 		'page_title' 	=> 'General Theme Info',
@@ -102,6 +102,15 @@ function my_acf_prepare_field( $field ) {
     return $field;
 }
 add_filter('acf/prepare_field/name=_post_title', 'my_acf_prepare_field');
+
+
+
+
+/*----- Allow custom background color ------*/
+$args = array(
+	'default-color' => 'a0cef5',
+);
+add_theme_support( 'custom-background', $args );
 
 
 
