@@ -5,7 +5,7 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.0.15
+Version: 1.0.2
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Tags: one-column, custom-menu, featured-images, microformats, sticky-post, threaded-comments 
@@ -54,7 +54,8 @@ line-height:1.5;
 
 .button {
 display:inline-block;
-background:#444;
+background:#345;
+background:linear-gradient(#456,#23292f);
 color:white;
 padding:.6em 0.7em;
 font-weight:bold;
@@ -62,6 +63,7 @@ line-height:1;
 text-decoration:none;
 border-radius:4px;
 }
+.button:hover {background:#234; background:linear-gradient(#4c6072,#283139);}
 .primary.button {
 background:#d3391f;
 background:linear-gradient(#d94123, #ca2e19);
