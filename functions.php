@@ -10,7 +10,10 @@ function blankslate_setup()
 	global $content_width;
 	if ( ! isset( $content_width ) ) $content_width = 1280;
 		register_nav_menus(
-		array( 'main-menu' => __( 'Main Menu', 'heavens-best-modern' ) )
+		array( 
+			'main-menu' => __( 'Main Menu', 'heavens-best-modern' ),
+			'service-areas' => __( 'Service Areas', 'heavens-best-modern' )
+		)
 	);
 }
 
@@ -86,9 +89,12 @@ function wpdocs_theme_setup() {
 /*---- Add Theme Options Page -------*/
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page(array(
-		'page_title' 	=> 'General Theme Info',
-		'menu_title'	=> 'General Info',
+		'page_title' 	=> 'General Theme Settings & Info',
+		'menu_title'	=> 'Theme Settings',
 		'menu_slug' 	=> 'theme-general-settings',
+		'position' => 56,
+		'icon_url' => 'dashicons-admin-tools',
+
 		'capability'	=> 'edit_posts',
 		'redirect'		=> false
 	));

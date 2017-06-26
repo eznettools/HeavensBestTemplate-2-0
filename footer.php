@@ -2,7 +2,7 @@
 </div>
 
 
-<footer id="footer" role="contentinfo">
+<footer id="footer" class="footer" role="contentinfo">
 
 
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
@@ -28,8 +28,6 @@
      </div>   
    Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
 </div>
-
-
 
 
 	<div id="copyright">

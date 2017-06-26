@@ -8,9 +8,11 @@ get_header();
 	
 <section class="reviews maxwidth">
 
-	<header class="header">
- 	<h1>Reviews For <?php single_term_title(); ?><h1>
+	<header >
+ 	<h1><b> Reviews For <?php single_term_title(); ?>  </b></h1>
 	</header>
+
+
 
 
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -23,7 +25,9 @@ get_header();
 	<?php endwhile; endif; ?>
 	
 
-<h2>Write Your Own Review...</h2>
+
+
+<h2>Write a Testimonial...</h2>
 	<?php	
 	acf_form(array(
 		'post_id'	=> 'new_post',
@@ -40,28 +44,41 @@ get_header();
 
 </section>
 
-<!-- Show Child Pages For Testimonials -->
 
+
+
+
+
+<!-- Show Services Areas -->
 <header class="blue-header"><h2 class="maxwidth">Service Areas</h2></header> 
 <section class="blue-box service-areas">
  <div class="maxwidth">
 
-
+<?php if( get_field('override_service_areas','option') ): ?>
+	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
+<?php else: ?>
 
 <ul class="area-list">
     <?php wp_list_categories( array(
         'orderby'    => 'name',
 	'title_li' => '',
+	'hierarchical' => false,
 	'taxonomy' => 'location',
-	'hide_empty' => '0'
+	'hide_empty' => 0
     ) ); ?>
 </ul>
+<?php endif; ?>
 
  </div>
 </section>
 
 
-<?php get_template_part( 'nav', 'below' ); ?>
+
+
+
+<style>
+.acf-taxonomy-field ul.children {padding-left:4px; display:inline-block;}
+</style>
 
 </main>
 

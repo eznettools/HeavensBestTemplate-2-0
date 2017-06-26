@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<section id="content" role="main">
+<main id="content" role="main">
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -9,11 +9,12 @@
 	<?php if( is_page('Home') ): ?>
 	<section class="banner">
 		<?php if( get_field('banner_image') == true ) { ?>
-			<?php $image = get_field('banner_image'); $size = 'large';
-			echo wp_get_attachment_image( $image, $size ); ?>
-			<!--<img style="width:100%;" src="<?php the_field('banner_image'); ?>"  />-->
+			<?php $image = get_field('banner_image'); $size = 'large'; ?>
+			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box"></div>
+			
 		<?php } else { ?>
-			<img src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775388/girl-carpet_ze08yo.jpg" />
+			<div style="background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1496775388/girl-carpet_ze08yo.jpg);" class="image-box"></div>
+			<!--<img src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775388/girl-carpet_ze08yo.jpg" />-->
 		<?php } ?>
 		<div class="textbox">
 			<h1><?php the_field('banner_title'); ?>  
@@ -21,15 +22,31 @@
 			</h1>
 			<a class="primary button" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>
 		</div>
-		<img id="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775273/Clouds-Group_zzdy9k.png" />
+		<img class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775273/Clouds-Group_zzdy9k.png" />
 	</section>
+
+<!-- possible parallax scrolling code
+<script>
+jQuery(document).ready(function( $ ) {
+
+	$(document).scroll(function() {
+	 var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+	 console.log( scrollTop );
+	$('.image-box').css('transform', 'translateY(' + scrollTop/2 + 'px)' );
+	});
+
+});
+</script>
+-->
+
 	<?php endif; ?>
 
 
 
-<?php if( have_rows('featured_services') ): ?>
+
+	<?php if( have_rows('featured_services') ): ?>
  
-	<section id="featured-services">
+	<section id="featured-services" class="featured-services">
 	  <header class="section-header">
 		<?php the_field('featured_services_title'); ?>
 	  </header>
@@ -52,20 +69,35 @@
 	 <footer class="section-footer"><?php the_field('all_services_button'); ?></footer>
 	</section>
 
-<?php endif; ?>
+	<?php endif; ?>
 
 
 
-	
+	<?php if( get_field('homepage_summary') ): ?>
+	<section id="homepage-summary" class="homepage-summary">
+	  <div class="maxwidth">
+		<?php the_field('homepage_summary'); ?>
+
+		 <footer class="maxwidth">
+			<?php the_field('homepage_summary_button'); ?>
+		</footer>
+	 </div>
+	</section>
+	<?php endif; ?>
+
+
+
+
 	<section class="entry-content">
 	  <div class="maxwidth">
-			<?php the_content(); ?>
+		<?php the_content(); ?>
 	  </div>
 	</section>
 
 
-<?php if( have_rows('coupons') ): ?>
-	<section id="coupons">
+
+	<?php if( have_rows('coupons') ): ?>
+	<section id="coupons" class="coupons">
 		<header class="section-header">
 			<?php the_field('coupon_title'); ?>
 		</header>
@@ -75,7 +107,7 @@
 	<?php while( have_rows('coupons') ): the_row(); ?>
 		<article class="coupon">
 		   <div class="coupon-text">
-			<!--<h2><?php the_sub_field('big_title'); ?></h2>-->
+			<h2><?php the_sub_field('big_title'); ?></h2>
 			<h3><?php the_sub_field('small_title'); ?></h3>
 			<?php the_sub_field('details'); ?>
 			<?php if( get_sub_field('expiration_date') == true ): ?>
@@ -89,12 +121,15 @@
 	  </div>
 	 <footer class="section-footer"><?php the_field('special_deals_button'); ?></footer>
 	</section>
-<?php endif; ?>	
+	<?php endif; ?>	
 
 
 
-<?php if( have_rows('logos_awards_etc') ): ?>
-	<section id="accolade-bar">
+
+
+
+	<?php if( have_rows('logos_awards_etc') ): ?>
+	<section id="accolade-bar" class="accolade-bar <?php if( get_field('grayscale_images') ): ?> grayscale <?php endif; ?>" >
 	<?php while( have_rows('logos_awards_etc') ): the_row(); $link = get_sub_field('logo_link'); ?>
  
 		<figure>
@@ -107,134 +142,67 @@
  
 	<?php endwhile; ?>
 	</section>
-<?php endif; ?>
+	<?php endif; ?>
 
+
+
+
+
+
+<!-- Write Google Review -->
+<section id="leave-google-review" class="leave-google-review margin background-box" style="">
+	<?php the_field('google_review_message','option'); ?>
+	<a class="primary button" href="<?php the_field('google_review_link','option'); ?>"><?php the_field('google_review_button_text','option'); ?></a>
+	<link rel="prerender" crossorigin href="<?php the_field('google_review_link','option'); ?>">
+	<div class="background front"></div>
+	<div class="background med"></div>
+	<div class="background back"></div>
+	<!--<img class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775273/Clouds-Group_zzdy9k.png" />-->
+	<?php if( get_field('read_reviews_link','option') ): ?>
+		<p style="margin-bottom:0;"><a class="secondary button" href="<?php the_field('read_reviews_link','option'); ?>"><?php the_field('read_reviews_button_text','option'); ?></a></p>
+	<?php endif; ?>
+</section>
+
+
+
+
+<header class="blue-header"><h2 class="maxwidth">Request An Estimate</h2></header> 
+<section id="respond" class="blue-box"> 
+ <div class="maxwidth">
+	<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 9, 'title' => false, 'description' => false ) ); ?>
+ </div>
+</section>
 
  
 
 
 
 
+ 
 
-<!-- Show Child Pages For Testimonials -->
-
+<!-- Show Services Areas -->
 <header class="blue-header"><h2 class="maxwidth">Service Areas</h2></header> 
 <section class="blue-box service-areas">
  <div class="maxwidth">
+
+<?php if( get_field('override_service_areas','option') ): ?>
+	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
+<?php else: ?>
 
 <ul class="area-list">
     <?php wp_list_categories( array(
         'orderby'    => 'name',
 	'title_li' => '',
+	'hierarchical' => false,
 	'taxonomy' => 'location',
-	'hide_empty' => '0'
+	'hide_empty' => 0
     ) ); ?>
 </ul>
-
+<?php endif; ?>
 
  </div>
 </section>
  
-
-
-
-
-<!-- Get Estimate Form -->
-<?php
-  //response generation function
-  $response = ""; 
-  function my_contact_form_generate_response($type, $message){ 
-	global $response;
-	if($type == "success") $response = "<div class='success'>{$message}</div>";
-	else $response = "<div class='error'>{$message}</div>"; 
-  }
-//response messages
-	$not_human       = "Human verification incorrect.";
-	$missing_content = "Please fill out all required fields.";
-	$email_invalid   = "Email Address Invalid.";
-	$message_unsent  = "Message was not sent. Try Again.";
-	$message_sent    = "Thanks! Your message has been sent.";
- 
-//user posted variables
-	$name = $_POST['message_name'];
-	$email = $_POST['message_email'];
-	$message = '<h1>Quick Estimate Form Information</h1>';
-	$message .= '<p><b>Name: </b>'. $_POST['message_name']  .'</p>';
-	$message .= '<p><b>Email: </b>'. $_POST['message_email']  .'</p>';
-	$message .= '<p><b>Phone: </b>'. $_POST['message_phone']  .'</p>';
-	$message .= '<p><b>Address: </b>'. $_POST['address']  .'</p>';
-	$message .= '<p><b>Questions or Comments:</b><br>'. $_POST['message_text']  .'</p>';
-
-	$human = $_POST['message_human'];
- 
-//php mailer variables
-	$to = get_option('admin_email');
-	$subject = "Customer Requested Quote ".get_bloginfo('name');
-	$headers = 'From: '. $email . "\r\n" .
-	'Reply-To: ' . $email . "\r\n";
-	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-
-
- 
-		//validate email
-		if(!filter_var($email, FILTER_VALIDATE_EMAIL))
-			my_contact_form_generate_response("error", $email_invalid);
-		else {
-  			//validate presence of name and message
-			if(empty($name) || empty($message)){
-				my_contact_form_generate_response("error", $missing_content);
-		}
-		$sent = wp_mail($to, $subject, $message, $headers);
-		if($sent) my_contact_form_generate_response("success", $message_sent); //message sent!
-		else my_contact_form_generate_response("error", $message_unsent); //message wasn't sent
-		}
- 
- 
-		
-?>
-
-<header class="blue-header"><h2 class="maxwidth">Request An Estimate</h2></header> 
-<div id="respond" class="blue-box">
-
-  <form class="form maxwidth" action="#respond" method="post">
-	<div class="fieldgroup">
-	<label for="name">Name: <span>*</span> <br>
-		<input required type="text" name="message_name" value="<?php echo esc_attr($_POST['message_name']); ?>">
-	</label>
-	<label for="message_email">Email: <span>*</span> <br>
-		<input required type="email" name="message_email" value="<?php echo esc_attr($_POST['message_email']); ?>">
-	</label>
-	<label for="message_phone">Phone: <span>*</span> <br>
-		<input required type="tel" name="message_phone" value="<?php echo esc_attr($_POST['message_phone']); ?>">
-	</label>
-	</div>
-
-	<p><label for="message_text">Address: <span>*</span> <br>
-		<textarea rows="2" type="text" name="address"><?php echo esc_textarea($_POST['address']); ?></textarea>
-	</label></p>
-
-	<p><label for="message_text">Comments or Questions: <span>*</span> <br>
-		<textarea rows="3" type="text" name="message_text"><?php echo esc_textarea($_POST['message_text']); ?></textarea>
-	</label></p>
-
-	<input id="morning" name="morning" type="checkbox"><label for="morning" >Morning</label>
-	<input id="afternoon" name="afternoon" type="checkbox"><label for="afternoon" >Afternoon</label>
-	<input id="evening" name="evening" type="checkbox"><label for="evening" >Evening</label>
-	<input id="Immediately " name="Immediately " type="checkbox"><label for="Immediately " >Immediately </label>
-
-	<img style="position:absolute; top:-50px;" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775245/checkbox-checked_uuccy2.png" >
-
-  <?php echo $response; ?>
-
-	<input type="hidden" name="submitted" value="1">
-	<p><button class="primary button" type="submit" value="Get Estimate">Get Estimate</button></p>
-
-
-
-  </form>
-</div>
-
-
 
 
 
@@ -244,7 +212,7 @@
 <?php if ( ! post_password_required() ) comments_template( '', true ); ?>
 
 <?php endwhile; endif; ?>
-</section>
+</main>
 
 
 <?php get_footer(); ?>

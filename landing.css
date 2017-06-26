@@ -1,0 +1,290 @@
+body {
+background:#0d509e;
+color:white;
+margin: 0;
+font-family: 'Open Sans', sans-serif;
+}
+
+
+h1, h2, h3 {
+line-height:1.05;
+margin:.2rem 0;
+}
+h1 { font-size: 2.5em;}
+h2 {}
+h3 {font-size:1.4em;  }
+
+p {line-height:1.3;}
+
+a {color:#fff;}
+
+img {max-width:100%; height:auto;}
+
+small {display:block;}
+
+hr {
+border: none;
+border-top: solid 1px rgba(255,255,255,.5);
+margin: 2em auto;
+}
+
+.primary-section {
+background-image: url(https://res.cloudinary.com/ez-nettools/image/upload/v1497975874/carpet-cleaning-background_xgb2bj.jpg);
+background-position:center;
+animation: 14s Zoom alternate infinite both cubic-bezier(.39,.58,.57,1);
+overflow:hidden;
+padding: 1em 4vw 2em;
+}
+
+.landing-header {
+text-align:center;
+font-size:2.8vw;
+animation: sqMeetLineAnimation 480ms cubic-bezier(.39,.58,.57,1) 50ms 1 both;
+}
+ 
+.column-parent {
+margin:auto;
+max-width:1200px;
+}
+
+
+/*------------ Special Deals text block ---------------*/
+.text-block {
+overflow:hidden;
+margin:auto;
+margin-top: 1.5rem;
+max-width:34rem;
+}
+
+.text-block article { font-size:90%; }
+
+.text-block h2 {
+font-size: calc(200% + 2.2vw);
+text-align:center;
+}
+
+/*-------- Icons ---------*/
+.text-block img { display:block; margin: 0 auto; } 
+
+.text-block article h3 {text-align:center;}
+
+
+/*------------ Form Wrapper -------------*/
+.form-wrapper {
+background: rgba(255,255,255,.82);
+padding: 1em;
+color: #1252A4;
+border: solid 3px white;
+border-radius: 8px;
+max-width: 460px;
+margin: 2rem auto 0;
+}
+.form-wrapper form {margin:0;}
+
+.form-logo {
+display:block; 
+margin:-3.5rem auto 10px;
+width:10.5rem;
+}
+
+/*--------------- Extra Info ----------------*/
+.extra-info {
+background:#002f76; 
+color:white; 
+border-top:solid 1px; 
+overflow:hidden;
+padding:1em;
+text-align:center;
+}
+
+.extra-info ul {  
+display: flex;
+flex-wrap:wrap;
+padding:0;
+justify-content: space-around;
+}
+
+.extra-info li { 
+padding: 0 1em;
+list-style-position: inside;
+white-space:nowrap;
+overflow:hidden;
+}
+
+
+@keyframes fadeInUp {
+  0% {opacity:0; transform:translateY(15px);}
+  100% {opacity:1;}
+}
+
+@keyframes sqMeetLineAnimation {
+	0% {opacity:0; 	transform:translateX(-385px)	}
+	100% {	opacity:1; transform:translateX(0) }
+}
+
+
+/*==========- Formidable Form  -===========-*/
+ 
+.frm_forms {}
+
+.frm_forms fieldset {border:none; padding:0;}
+
+.frm_form_field { margin-bottom:10px; font-size:1.2em; }
+
+
+.frm_form_field input, .frm_form_field textarea {
+width:100%; 
+font:inherit;
+padding:.45em;
+border:solid 1px #aaa;
+border-radius:3px;
+}
+.frm_form_field .frm_radio , .frm_form_field .frm_checkbox { display:inline-block;}
+.frm_form_field .frm_radio input, .frm_form_field .frm_checkbox input {width:auto;}
+
+.frm_primary_label {
+display:block; width:auto;
+font-weight:bold;
+padding:1px;
+}
+.frm_primary_label h2 { font-size:1.5em;}
+.frm_half {width: 48.75%; margin-left: 2.5%; float:left;}
+.frm_third {width: 31.66%; margin-left: 2.5%; float:left;} 
+
+.frm_first { margin-left:0;}
+ 
+.frm_button_submit {
+font:inherit;
+font-size:1.4em;
+width:100%;
+font-weight:bold;
+padding:.55em 1em;
+line-height:1.1;
+background:#e22;
+color:white;
+border:solid 1px #c22;
+border-radius:5px;
+margin-top:10px;
+}
+
+
+.frm_message {
+	background: #0b9e6a;
+	color: white;
+	text-align: center;
+	padding: 1px 15px;
+	border-radius: 6px;
+	font-size: 1.2em;
+}
+.frm_message p{ margin:.55em 0; line-height:1.35;}
+
+/*--------------- Footer ---------------------*/
+.phone-footer { 
+display:block;
+background:#072B63; 
+color:white;
+text-align:center;
+padding:10px;
+overflow:hidden;
+border-top: solid 1px rgba(255,255,255,.6);
+}
+
+.phone-number {
+font-size: calc(200% + 3vw);
+margin: .2em 0;
+}
+
+.address-footer {
+    background: #022051;
+    border-top: solid 1px rgba(255,255,255,.5);
+    padding: .6em 0;
+color:white;
+}
+
+.homepage-link {
+display:inline-block;
+border:solid 2px;
+padding:6px;
+text-decoration:none;
+border-radius:6px;
+}
+
+
+/*````````````````````````````` Additional Themes ````````````````````````````````*/
+
+/*=========== Fall Theme ===============*/
+.fall .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497975507/fall-background_jikenu.jpg); text-shadow:1px 1px 1px #920; background-color:#e07b0f; }
+
+.fall .form-wrapper { color:#b14a3d; text-shadow:none;}
+
+.fall .extra-info {background:#C9430E;}
+
+.fall .phone-footer { background:#8C1D0B; border-top: solid 1px rgba(255,255,255,.6); }
+.fall .address-footer { background:#4E0404;}
+
+/*======= Winter Holiday (Christmas) Theme ========*/
+
+.christmas .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497641852/holiday-background_hotef6.jpg); background-color:#fff6e5; color:#a20606; 
+ text-shadow:-1px -1px #fff; }
+
+.christmas .landing-header { color:#c51616; text-shadow:1px 1px 6px rgba(255,255,255,.9); }
+
+.christmas .extra-info {background: #C90E0E;}
+
+.christmas .phone-footer {background:#8C0B0B;}
+.christmas .address-footer { background:#4E0404 }
+
+.christmas hr { border-top:solid 2px rgba(115,5,5,.6); box-shadow: 0 -2px 2px white; }
+
+.christmas .form-wrapper {color:#b14a3d; }
+.christmas .frm_button_submit { background: #148914; border:none; box-shadow: 0 3px #050, inset 0 0 3px rgba(255,255,255,.8); }
+
+/*==== Spring Theme =====*/
+
+
+.spring .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497977864/spring-background_t2hb7y.jpg); background-color:#e2f9ff; color:#ee2a54; }
+
+.spring .form-wrapper { background:rgba(240,255,255,.82); box-shadow: 0 1px 4px rgba(0,0,0,.4); color:#b14a3d; }
+.spring hr {border-top: solid .2em #EE2A54;}
+.spring .text-block {text-shadow: 1px 1px 1px #fff;}
+
+.spring .extra-info {background:#F5355E;  }
+.spring .phone-footer {background:#8846BD; color:white;}
+.spring .address-footer {background:#FFE886; color:#622593;}
+
+
+
+
+
+/*:::::::::::::::::::::::::::::::::::: Media Queries ::::::::::::::::::::::::::::::::::::::::::::*/
+@media (min-width:800px) {
+
+	html { font-size:105%;}
+
+	.text-block { float:left; width:55%; }
+	.text-block h2 {text-align:left; font-size: 4.1em; } 
+
+	.form-wrapper { float:right; width: 40%; }
+
+	.extra-info  {font-size:115%;}
+	.text-block ul {font-size:130%;}
+}
+
+
+@media (min-width:1200px) {
+
+	html { font-size:110%;}
+
+	.text-block article h3 {text-align:left;}
+
+  .text-block > article:nth-child(odd) figure {
+   float: left;
+   margin: 0 2em 0 0;
+  }
+  .text-block > article:nth-child(even) figure {
+    float: right;
+    margin: 0 0 0 2em;
+  }
+
+}
+

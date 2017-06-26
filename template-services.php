@@ -30,7 +30,7 @@
 
 <!-- Show Child Pages For Services -->
  
-<section id="featured-services" class="child-pages  "><div class="inner maxwidth"> 
+<section id="featured-services" class="child-pages featured-services"><div class="inner maxwidth"> 
 <?php
 $parent = $post->post_parent == 0 ? $post->ID : $post->post_parent;
 

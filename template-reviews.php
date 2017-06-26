@@ -11,7 +11,7 @@ get_header();
 
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-
+ 
 
 	<section class="entry-content">
 	  <div class="maxwidth">
@@ -31,6 +31,9 @@ get_header();
 			<?php endwhile; ?>
 		<?php endif; ?>
 
+ 
+<!--<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 11, 'title' => false, 'description' => false ) ); ?>-->
+ 
 
 	<h2>Write a Testimonial...</h2>
 	<?php	
@@ -54,20 +57,27 @@ get_header();
 
 
 
+ 
 
-<!-- Show Child Pages For Testimonials -->
+<!-- Show Services Areas -->
 <header class="blue-header"><h2 class="maxwidth">Service Areas</h2></header> 
 <section class="blue-box service-areas">
  <div class="maxwidth">
+
+<?php if( get_field('override_service_areas','option') ): ?>
+	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
+<?php else: ?>
 
 <ul class="area-list">
     <?php wp_list_categories( array(
         'orderby'    => 'name',
 	'title_li' => '',
+	'hierarchical' => false,
 	'taxonomy' => 'location',
-	'hide_empty' => '0'
+	'hide_empty' => 0
     ) ); ?>
 </ul>
+<?php endif; ?>
 
  </div>
 </section>

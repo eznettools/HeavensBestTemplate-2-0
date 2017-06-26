@@ -12,10 +12,11 @@
 	<div class="post-text">	
 		<header>
  
-		<h4 class="entry-title">
+		<h2 class="entry-title">
 			<?php the_title(); ?> 
-		</h4> 
+		</h2> 
 		</header>
+			<?php the_excerpt(); ?>
 	</div>
 
 </a>
