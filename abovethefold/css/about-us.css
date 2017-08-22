@@ -1,6 +1,7 @@
 /**
- * Global
+ * About Us
  *
+ * @condition is_page():"15"
  * @weight 1
  */
 body {
@@ -32,6 +33,20 @@ html {
   padding-bottom: 10px;
 }
 
+.sticky-estimate-button {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 6px;
+  z-index: 999;
+  overflow: hidden;
+  perspective: 900px;
+}
+
+.sticky-estimate-button a {
+  transform: translate(0%, 115%) rotateY(-180deg);
+}
+
 h1 {
   margin: .2em auto .3em;
   text-rendering: optimizeLegibility;
@@ -51,14 +66,46 @@ a {
   color: #0963b4;
 }
 
+.button {
+  display: inline-block;
+  background: #345;
+  background: linear-gradient(#456,#23292f);
+  color: white;
+  padding: .6em 0.7em;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 4px;
+  position: relative;
+  z-index: 99;
+}
+
+.button:after {
+  content: " \00bb";
+  display: inline-block;
+  padding-left: .2em;
+  transform-origin: bottom;
+  transform: translate(0,-1px);
+}
+
+.primary.button {
+  background: #d3391f;
+  background: linear-gradient(#d94123, #ca2e19);
+  font-size: 1.35em;
+  border: solid .1em #ffc786;
+}
+
 img {
   max-width: 100%;
   height: auto;
 }
 
-figure {
-  margin: 0;
-  padding: 0;
+.alignright {
+  float: right;
+  margin-left: 15px;
+  clear: right;
+  margin-top: .25em;
+  max-width: 50%;
 }
 
 .maxwidth {
@@ -66,16 +113,17 @@ figure {
   margin: auto;
 }
 
-.alignright{ float:right; margin-left:15px; clear:right; margin-top:.25em; max-width:50%;}
-
 article,
 aside,
-figcaption,
-figure,
+footer,
 header,
 nav,
 section {
   display: block;
+}
+
+.margin {
+  margin: 10px;
 }
 
 .header {
@@ -129,6 +177,7 @@ section {
 
 .sticky-header .topnav {
   padding: 0;
+  width: auto;
 }
 
 .sticky-header .logo {
@@ -206,6 +255,7 @@ nav ul {
 .topnav li .sub-menu li,
 .topnav li .sub-menu li a {
   display: block;
+  border-bottom: solid 1px #eee;
 }
 
 .topnav li:last-child .sub-menu {
@@ -213,110 +263,86 @@ nav ul {
   right: 0;
 }
 
-.post,
 .entry-content {
   padding: 0.5em 10px;
 }
 
-.featured-services {
-  margin: 5px;
-}
-
-.featured-services .inner {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.featured-services figure {
-  background-size: cover;
-  position: relative;
-  color: white;
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.35em;
-  flex: 1 1 22%;
-  margin: 5px;
-  line-height: 1.25;
-  width: 100%;
-}
-
-.featured-services figure:after {
-  display: block;
-  content: " ";
-  padding-bottom: 70%;
-}
-
-.featured-services figcaption {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+.section-header,
+.section-footer {
   text-align: center;
-  text-shadow: 1px 2px 2px rgba(20,40,60,.45);
+  padding: 5px;
+}
+
+.leave-google-review {
+  text-align: center;
+  background: #3183cf;
   color: white;
+  padding: 12px 10px 90px;
+  position: relative;
 }
 
-.featured-services a figcaption {
-  background: rgba(0,35,95,.25);
-  transform: scale(1);
-  outline: solid 1px transparent;
-}
-
-.services-banner {
-  padding-top: 32%;
+.background-box {
+  background-image: linear-gradient(143deg,  #3b86c6 40%, #a7ddff);
+  padding: 0em 0 8%;
+  color: white;
   position: relative;
   overflow: hidden;
+  clear: both;
 }
 
-.services-banner .banner-image {
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+.background {
   height: 100%;
-  animation: 14s Zoom alternate infinite both cubic-bezier(.39,.58,.57,1);
+  position: absolute;
+  bottom: -6%;
+  left: 0;
+  right: 0;
+  background-size: 50% 100px;
+  transform-origin: 50% 100%;
+  width: 200%;
+  background-size: 50% auto;
 }
 
-.services-banner .banner-image.lowres {
-  filter: blur(5px);
+.background.front {
+  background: url(https://res.cloudinary.com/ez-nettools/image/upload/v1498160474/cloudsFront_msajaf.png) repeat-x bottom;
+  background-size: 50% auto;
+  z-index: 15;
+  opacity: 0.3;
+  animation: move_cloud 8s linear infinite -1s;
 }
 
-.services-banner header {
+.background.med {
+  background: url(https://res.cloudinary.com/ez-nettools/image/upload/v1498160477/cloudsMed_zn9nld.png) repeat-x left bottom;
+  background-size: 50% auto;
+  opacity: .5;
+  z-index: 10;
+  animation: move_cloud 24s linear infinite;
+}
+
+.background.back {
+  background: url(https://res.cloudinary.com/ez-nettools/image/upload/v1498160474/cloudsFront_msajaf.png) repeat-x bottom;
+  background-size: 50% auto;
+  opacity: 1;
+  z-index: 5;
+  animation: move_cloud 42s linear infinite;
+}
+
+@keyframes move_cloud {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+
+  50% {
+    transform: translateX(-25%) scaleY(0.75) translateZ(0);
+  }
+
+  100% {
+    transform: translateX(-50%) translateZ(0);
+  }
+}
+
+.footer a {
   color: white;
-  background: black;
-  background: rgba(0,0,0,.5);
-  background: linear-gradient( rgba(0,20,40,.0), rgba(0,20,40,.2), rgba(0,20,40,.5) );
-  padding: 1em;
-  text-shadow: 0 1px 4px rgba(0,20,40,.3), 0 -1px 12px rgba(0,20,40,.3);
-  position: relative;
-  z-index: 9;
 }
-
-.services-banner header h1 {
-  line-height: 1.3;
-}
-
-.services-banner .cleaning-title {
-  display: inline-block;
-  animation: 1s fromLeft both 0.2s cubic-bezier(.39,.58,.57,1);
-}
-
-.services-banner small {
-  animation: 1s fromRight both 0.2s cubic-bezier(.39,.58,.57,1);
-}
-
-.services-banner header small {
-  display: block;
-  font-size: 48%;
-}
-
-.frm_forms fieldset {border:none; padding:0;}
 
 @media (min-width:1080px) {
   html {
@@ -406,10 +432,5 @@ nav ul {
     border: solid 1px #eee;
     padding: 1em .2em;
     border-radius: 0;
-  }
-
-  .featured-services figure {
-    flex: 1 1 44%;
-    margin: 4px;
   }
 }

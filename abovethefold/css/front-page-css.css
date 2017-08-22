@@ -29,8 +29,49 @@ html {
   box-shadow: 0 0 8px rgba(0,0,0,.25);
 }
 
-#wrapper {
-  padding-bottom: 10px;
+#wrapper { padding-bottom: 10px;}
+
+.sticky-call-action {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  z-index: 999;
+  overflow: hidden;
+  text-align: center;
+  perspective: 900px;
+}
+
+.section-footer {
+    text-align: center;
+    padding: 5px;
+}
+.homepage-summary {margin: 40px 10px 20px; padding: 8px 0 0;}
+
+.sticky-call-action .popup {
+  color: #333;
+  padding: 0 4px 4px;
+
+  transform: translate(0%, 115%) rotateY(-180deg);
+}
+
+.popup p {
+  margin: .2em 0;
+  font-weight: bold;
+}
+
+@media (max-width:500px) {
+  .sticky-call-action {
+    left: 0;
+    right: 0;
+  }
+
+  .sticky-call-action .popup {
+    padding: 2px;
+  }
+
+  .popup p {
+    display: inline-block;
+  }
 }
 
 h1,
@@ -50,6 +91,10 @@ h2 {
   font-family: 'Oswald', sans-serif;
 }
 
+p {
+  line-height: 1.5;
+}
+
 a {
   color: #0963b4;
 }
@@ -64,6 +109,16 @@ a {
   line-height: 1;
   text-decoration: none;
   border-radius: 4px;
+  position: relative;
+  z-index: 99;
+}
+
+.button:after {
+  content: " \00bb";
+  display: inline-block;
+  padding-left: .2em;
+  transform-origin: bottom;
+  transform: translate(0,-1px);
 }
 
 .primary.button {
@@ -82,6 +137,8 @@ figure {
   margin: 0;
   padding: 0;
 }
+
+.alignright{ float:right; margin-left:15px; clear:right; margin-top:.25em; max-width:50%;}
 
 article,
 aside,
@@ -103,15 +160,14 @@ section {
 .logo {
   float: left;
   margin-left: 5px;
-  margin-bottom: -50px;
+  margin-bottom: -80px;
   position: relative;
   z-index: 99;
-  width: 140px;
+  width: 136px;
 }
 
 .header-aside {
   text-align: right;
-  flex: 1 1 auto;
   order: 3;
   float: right;
   line-height: 1;
@@ -119,13 +175,15 @@ section {
 
 .header-aside .phone {
   padding-right: 8px;
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: bold;
+  color: #2a2a2a;
 }
 
 .dry-ribbon {
   display: inline-block;
-  margin-right: -14px;
+  margin-right: -12px;
+  max-width: 230px;
 }
 
 .sticky-header {
@@ -144,6 +202,7 @@ section {
 
 .sticky-header .topnav {
   padding: 0;
+  width: auto;
 }
 
 .sticky-header .logo {
@@ -151,7 +210,7 @@ section {
 }
 
 .sticky-header .header-aside {
-  padding-top: .75em;
+  padding-top: .65em;
 }
 
 .sticky-header .header-aside .phone {
@@ -188,7 +247,7 @@ nav ul {
   display: inline-block;
   padding: .8em;
   color: #123;
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-decoration: none;
   border-radius: 2px;
 }
@@ -210,17 +269,24 @@ nav ul {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
-  background: rgba(255,255,255,.96);
+  background: transparent;
   font-size: 85%;
   min-width: 14em;
   box-shadow: 0 2px 4px rgba(0,15,45,.4);
   z-index: 999;
+  overflow: hidden;
+  transform-origin: top;
 }
 
 .topnav li .sub-menu li,
 .topnav li .sub-menu li a {
   display: block;
+}
+
+.topnav li .sub-menu li a {
+  border-bottom: solid 1px #d4d8de;
+  background: #fff;
+  background: rgba(255,255,255,.96);
 }
 
 .topnav li:last-child .sub-menu {
@@ -230,7 +296,7 @@ nav ul {
 
 .section-header {
   text-align: center;
-  padding: 5px;
+  padding: 0px 4px 20px;
 }
 
 .banner {
@@ -238,13 +304,14 @@ nav ul {
   position: relative;
   margin: 5px 10px;
   min-height: 22em;
+  overflow: hidden;
 }
 
 .banner img {
   width: 100%;
 }
 
-#clouds {
+.clouds {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -327,11 +394,17 @@ nav ul {
   outline: solid 1px transparent;
 }
 
-.form input {
-  font: inherit;
-  padding: .4em;
-  width: 100%;
-  resize: vertical;
+.cleaning-title {
+  display: inline-block;
+  animation: 1s fromLeft both 0.2s cubic-bezier(.39,.58,.57,1);
+}
+
+.franchise-area-title {
+  animation: 1s fromRight both 0.2s cubic-bezier(.39,.58,.57,1);
+}
+
+.footer a {
+  color: white;
 }
 
 @media (min-width:1080px) {
@@ -425,15 +498,20 @@ nav ul {
     flex: 1 1 auto;
     border: solid 1px #eee;
     padding: 1em .2em;
-    border-radius: 0;
   }
 
   .banner {
     margin: 0;
   }
+}
 
+@media screen and (max-width:520px) {
   .featured-services figure {
     flex: 1 1 44%;
     margin: 4px;
+  }
+
+  .banner .button {
+    font-size: 3em;
   }
 }

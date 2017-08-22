@@ -7,40 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 	<?php wp_head(); ?>
 
-<script src="https://osvaldas.info/examples/drop-down-navigation-touch-friendly-and-responsive/doubletaptogo.min.js"></script>
 
-<script>
-jQuery(document).ready(function( $ ) {
-var $document = $(document),
-    $element = $('.sticky-header'),
-    className = 'active';
-
-$document.scroll(function() {
-  if ($document.scrollTop() >= 250) {
-    $element.addClass(className);
-  } else {
-    $element.removeClass(className);
-  }
-});
-
-$( '.topnav li:has(ul)' ).doubleTapToGo();
-
-});
-
-
-
-
-
-
-
-
-</script>
-
+ 
 
 <?php if( get_field('custom_css_toggle') ): ?>
-<style>
-/*-- Local Page CSS --*/ 
-<?php the_field('local_css'); ?>
+	<style>
+	/*-- Local Page CSS --*/ 
+	<?php the_field('local_css'); ?>
 </style>
 <?php endif; ?>
 
@@ -62,12 +35,21 @@ $( '.topnav li:has(ul)' ).doubleTapToGo();
 		<div class="dry-ribbon">
 		<img alt="Dry in 1 Hour" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774919/dry-banner-flat_i3nrpr.png" />
 		</div>
-		<div class="phone"><?php the_field('phone_number', 'option'); ?></div>
+
+		<div class="phone">
+			<?php if( get_field('override_phone_number_in_header','option') ): ?>
+					<?php the_field('manual_phone_number_html','option'); ?>
+			<?php else: ?>
+				<img class="phone-icon" style="width:.93em; margin:0 -2px -0.1em;" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502460774/icon-telephone_vii2sr.png" />
+				<?php the_field('phone_number', 'option'); ?>
+			<?php endif; ?>
+		</div>
 	</aside>
 
 	<nav id="menu" class="topnav" role="navigation">
 		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false ) ); ?>
 	</nav>
+
 	
    </header>
 
@@ -80,10 +62,14 @@ $( '.topnav li:has(ul)' ).doubleTapToGo();
 		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false ) ); ?>
 	</nav>
 
+
+
 	<aside class="header-aside">
 		<div class="phone"><?php the_field('phone_number', 'option'); ?></div>
 	</aside>
     </div>
    </header>
+
+
 	
 	<div id="container">

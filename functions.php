@@ -17,10 +17,28 @@ function blankslate_setup()
 	);
 }
 
+function wpb_add_google_fonts() {
+wp_enqueue_style( 'wpb-google-fonts', 'https://fonts.googleapis.com/css?family=Oswald:700', false ); 
+}
+add_action( 'wp_enqueue_scripts', 'wpb_add_google_fonts' );
+
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+
 add_action( 'wp_enqueue_scripts', 'blankslate_load_scripts' );
 function blankslate_load_scripts()
 {
-	wp_enqueue_script( 'jquery' );
+ 
+		wp_deregister_script('jquery');
+		wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', false, '1.8.1');
+		wp_enqueue_script('jquery');
+	wp_enqueue_script( 'doubletaptogo', get_stylesheet_directory_uri() . '/doubletaptogo.min.js', array( 'jquery' ) );	
+	//wp_enqueue_script( 'formidable', '/wp-content/plugins/formidable/js/formidable.min.js', array( 'jquery' ) );	
+	//wp_enqueue_script( 'starRating', '/wp-content/plugins/formidable/pro/js/jquery.rating.min.js', array( 'jquery' ) );	
+
+
+
 }
 
 add_action( 'comment_form_before', 'blankslate_enqueue_comment_reply_script' );
@@ -100,6 +118,16 @@ if( function_exists('acf_add_options_page') ) {
 	));
 }
 
+add_action( 'admin_init', 'wpuxss_admin_scripts' );
+function wpuxss_admin_scripts() {	
+	global $pagenow;	
+	if (( $pagenow == 'admin.php' ) && ($_GET['page'] == 'theme-general-settings') ) 	{		
+		wp_enqueue_script( 'wplink', home_url('/wp-includes/js/wplink.js') );
+		wp_enqueue_script( 'popup', home_url('/wp-content/plugins/formidable/js/formidable_admin_global.js?ver=2.03.10') );	
+	}
+}
+
+
 
 
 /*----- Change Title label on reviews form ------*/
@@ -157,16 +185,13 @@ add_action( 'init', 'cptui_register_my_cpts' );
 
 
 function cptui_register_my_taxes() {
-
 	/**
 	 * Taxonomy: Locations.
 	 */
-
 	$labels = array(
 		"name" => __( 'Locations', 'heavens-best-modern' ),
 		"singular_name" => __( 'Location', 'heavens-best-modern' ),
 	);
-
 	$args = array(
 		"label" => __( 'Locations', 'heavens-best-modern' ),
 		"labels" => $labels,
@@ -185,7 +210,35 @@ function cptui_register_my_taxes() {
 	);
 	register_taxonomy( "location", array( "review" ), $args );
 }
-
 add_action( 'init', 'cptui_register_my_taxes' );
 
  
+add_editor_style();
+
+
+add_filter( 'nav_menu_link_attributes', 'wpse270596_add_navlink_atts', 10, 3 );
+function wpse270596_add_navlink_atts( $atts, $item, $args ) {
+  if (in_array('menu-item-has-children', $item->classes)) {
+    $atts['data-toggle'] = 'dropdown';
+    $atts['aria-haspopup'] = 'true';
+  }
+return $atts;
+}
+
+
+
+
+
+ 
+add_filter( 'frm_filter_final_form', 'auto_minimize_forms' );
+function auto_minimize_forms( $form ) {
+  $form = str_replace( array('<fieldset>', '</fieldset>'), '', $form);
+  return $form;
+}
+
+// Move Yoast to bottom
+function yoasttobottom() {
+	return 'low';
+}
+add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
+

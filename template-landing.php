@@ -38,8 +38,11 @@
 
 		<div class="form-wrapper">
 			<div class="form-logo"><img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>" /></div>
-			<?php the_field('choose_your_form');    ?>
-			<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 5, 'title' => false, 'description' => false ) ); ?>
+			<?php if( get_field('choose_your_form') ): ?>
+				<?php the_field('choose_your_form');    ?>
+			<?php else: ?>
+				<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 5, 'title' => false, 'description' => false ) ); ?>
+			<?php endif; ?>
 		</div>
 
 
@@ -55,7 +58,15 @@
 
 <section class="phone-footer">
 
-	 <h2 class="phone-number">Call Us: <?php the_field('phone_number','option'); ?></h2>
+	<?php if( get_field('phone_number') ): ?>
+
+		<h2 class="phone-number">Call Us: <?php the_field('phone_number'); ?></h2>
+
+	<?php else: ?>
+
+		<h2 class="phone-number">Call Us: <?php the_field('phone_number','option'); ?></h2>
+
+	<?php endif; ?>
 
 	<?php if( get_field('add_homepage_link') ): ?>
 		<a class="homepage-link" href="/">Visit Our Website</a>

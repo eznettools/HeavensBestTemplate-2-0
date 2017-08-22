@@ -1,6 +1,7 @@
 /**
- * Global
+ * Before and After
  *
+ * @condition is_page_template():"template-before-after.php"
  * @weight 1
  */
 body {
@@ -32,7 +33,39 @@ html {
   padding-bottom: 10px;
 }
 
-h1 {
+.sticky-call-action {
+  position: fixed;
+  bottom: 0;
+  right: 10px;
+  z-index: 999;
+  overflow: hidden;
+  text-align: center;
+  perspective: 900px;
+}
+
+.sticky-call-action .popup {
+  color: #333;
+  padding: 0 4px 4px;
+  transform: translate(0%, 115%) rotateY(-180deg);
+}
+
+@media (max-width:500px) {
+  .sticky-call-action {
+    left: 0;
+    right: 0;
+  }
+
+  .sticky-call-action .popup {
+    padding: 2px;
+  }
+
+  .sticky-call-action .popup a {
+    width: 100%;
+  }
+}
+
+h1,
+h2 {
   margin: .2em auto .3em;
   text-rendering: optimizeLegibility;
   line-height: 1.15;
@@ -43,12 +76,42 @@ h1 {
   font-family: 'Oswald', sans-serif;
 }
 
-p {
-  line-height: 1.5;
+h2 {
+  font-size: 1.8em;
+  font-family: 'Oswald', sans-serif;
 }
 
 a {
   color: #0963b4;
+}
+
+.button {
+  display: inline-block;
+  background: #345;
+  background: linear-gradient(#456,#23292f);
+  color: white;
+  padding: .6em 0.7em;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 4px;
+  position: relative;
+  z-index: 99;
+}
+
+.button:after {
+  content: " \00bb";
+  display: inline-block;
+  padding-left: .2em;
+  transform-origin: bottom;
+  transform: translate(0,-1px);
+}
+
+.primary.button {
+  background: #d3391f;
+  background: linear-gradient(#d94123, #ca2e19);
+  font-size: 1.35em;
+  border: solid .1em #ffc786;
 }
 
 img {
@@ -60,13 +123,6 @@ figure {
   margin: 0;
   padding: 0;
 }
-
-.maxwidth {
-  max-width: 960px;
-  margin: auto;
-}
-
-.alignright{ float:right; margin-left:15px; clear:right; margin-top:.25em; max-width:50%;}
 
 article,
 aside,
@@ -88,15 +144,15 @@ section {
 .logo {
   float: left;
   margin-left: 5px;
-  margin-bottom: -50px;
+  margin-bottom: -80px;
   position: relative;
   z-index: 99;
-  width: 140px;
+  width: 136px;
 }
 
 .header-aside {
   text-align: right;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   order: 3;
   float: right;
   line-height: 1;
@@ -104,13 +160,19 @@ section {
 
 .header-aside .phone {
   padding-right: 8px;
-  font-size: 2em;
+  font-size: 1.6em;
   font-weight: bold;
+  color: #2a2a2a;
+}
+
+.phone .phone-icon {
+  animation: 1.1s tada 1.6s ease-in-out;
 }
 
 .dry-ribbon {
   display: inline-block;
-  margin-right: -14px;
+  margin-right: -12px;
+  max-width: 230px;
 }
 
 .sticky-header {
@@ -125,10 +187,12 @@ section {
 .sticky-header .header {
   background: rgba(255,255,255,.94);
   box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  padding: 0;
 }
 
 .sticky-header .topnav {
   padding: 0;
+  width: auto;
 }
 
 .sticky-header .logo {
@@ -136,11 +200,11 @@ section {
 }
 
 .sticky-header .header-aside {
-  padding-top: .75em;
+  padding-top: .6em;
 }
 
 .sticky-header .header-aside .phone {
-  font-weight: normal;
+  font-weight: bold;
   font-size: 1.75em;
 }
 
@@ -164,7 +228,8 @@ nav ul {
   position: relative;
 }
 
-.topnav li.current-menu-item > a {
+.topnav li.current-menu-item > a,
+.topnav li.current-menu-ancestor > a {
   background: #edf6ff;
   border: solid 1px #def;
 }
@@ -173,9 +238,8 @@ nav ul {
   display: inline-block;
   padding: .8em;
   color: #123;
-  font-size: 1.2em;
+  font-size: 1.1em;
   text-decoration: none;
-  border-radius: 2px;
 }
 
 .topnav li.menu-item-has-children > a:after {
@@ -195,17 +259,25 @@ nav ul {
   position: absolute;
   top: 100%;
   left: 0;
-  background: #fff;
-  background: rgba(255,255,255,.96);
+  background: transparent;
   font-size: 85%;
   min-width: 14em;
   box-shadow: 0 2px 4px rgba(0,15,45,.4);
   z-index: 999;
+  overflow: hidden;
+  transform-origin: top;
 }
 
 .topnav li .sub-menu li,
 .topnav li .sub-menu li a {
   display: block;
+  line-height: 1.15;
+}
+
+.topnav li .sub-menu li a {
+  border-bottom: solid 1px #d4d8de;
+  background: #fff;
+  background: rgba(255,255,255,.96);
 }
 
 .topnav li:last-child .sub-menu {
@@ -213,110 +285,43 @@ nav ul {
   right: 0;
 }
 
-.post,
 .entry-content {
   padding: 0.5em 10px;
 }
 
-.featured-services {
-  margin: 5px;
-}
-
-.featured-services .inner {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.featured-services figure {
-  background-size: cover;
-  position: relative;
+.blue-header {
+  background: #2a79c0;
   color: white;
-  font-family: 'Oswald', sans-serif;
-  font-size: 1.35em;
-  flex: 1 1 22%;
-  margin: 5px;
-  line-height: 1.25;
-  width: 100%;
+  border-radius: 3px 3px 0 0;
+  margin: 10px 10px 0;
+  padding: .5em 1em;
 }
 
-.featured-services figure:after {
-  display: block;
-  content: " ";
-  padding-bottom: 70%;
+.before-after {
+  padding: 10px;
+  //margin-bottom: 10px;
 }
 
-.featured-services figcaption {
-  position: absolute;
+.before-after-set {
   display: flex;
-  align-items: center;
+  margin: 0;
   justify-content: center;
-  padding: 6px;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
   text-align: center;
-  text-shadow: 1px 2px 2px rgba(20,40,60,.45);
-  color: white;
 }
 
-.featured-services a figcaption {
-  background: rgba(0,35,95,.25);
-  transform: scale(1);
-  outline: solid 1px transparent;
-}
-
-.services-banner {
-  padding-top: 32%;
-  position: relative;
-  overflow: hidden;
-}
-
-.services-banner .banner-image {
-  background-position: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  animation: 14s Zoom alternate infinite both cubic-bezier(.39,.58,.57,1);
-}
-
-.services-banner .banner-image.lowres {
-  filter: blur(5px);
-}
-
-.services-banner header {
-  color: white;
-  background: black;
-  background: rgba(0,0,0,.5);
-  background: linear-gradient( rgba(0,20,40,.0), rgba(0,20,40,.2), rgba(0,20,40,.5) );
-  padding: 1em;
-  text-shadow: 0 1px 4px rgba(0,20,40,.3), 0 -1px 12px rgba(0,20,40,.3);
-  position: relative;
-  z-index: 9;
-}
-
-.services-banner header h1 {
-  line-height: 1.3;
-}
-
-.services-banner .cleaning-title {
+.before-after-set figure {
   display: inline-block;
-  animation: 1s fromLeft both 0.2s cubic-bezier(.39,.58,.57,1);
+  margin: 0px 0px 4px;
+  flex: 1 1 200px;
 }
 
-.services-banner small {
-  animation: 1s fromRight both 0.2s cubic-bezier(.39,.58,.57,1);
+.before-after-set figure img {
+  width: 100%;
 }
 
-.services-banner header small {
-  display: block;
-  font-size: 48%;
+.footer a {
+  color: white;
 }
-
-.frm_forms fieldset {border:none; padding:0;}
 
 @media (min-width:1080px) {
   html {
@@ -406,10 +411,5 @@ nav ul {
     border: solid 1px #eee;
     padding: 1em .2em;
     border-radius: 0;
-  }
-
-  .featured-services figure {
-    flex: 1 1 44%;
-    margin: 4px;
   }
 }

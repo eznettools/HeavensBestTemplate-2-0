@@ -8,29 +8,91 @@
 
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-
+ 
 <div class="services-banner" style="">
 	<div class="banner-image lowres" style="background-image:url(<?php the_post_thumbnail_url( 'small' ); ?>); background-size:cover;"></div>
 	<div class="banner-image highres" style="background-image:url(<?php the_post_thumbnail_url( 'full' ); ?>); background-size:cover;"></div>
 
 	<header style="">
-		<h1 class="maxwidth"><span class="cleaning-title"><?php the_title(); ?></span> <small>in <?php the_field('primary_location_name', 'options'); ?></small></h1>
+		<h1 class="maxwidth"><span class="cleaning-title"><?php the_title(); ?></span> <small class="franchise-area-title">in <?php the_field('primary_location_name', 'options'); ?></small></h1>
 	</header>
 </div>
 
 
+<?php if( have_rows('flexible_content_areas') ):
+    while ( have_rows('flexible_content_areas') ) : the_row();
+
+        if( get_row_layout() == 'add_checkbox_block' ): ?>
+
+				<section class="checkbox-list <?php the_sub_field('custom_classes'); ?>" <?php the_sub_field('other_attributes'); ?> >
+
+					<?php if( get_sub_field('custom_background_image') ): ?>
+						<?php $image = get_sub_field('custom_background_image'); ?>
+						<div class="banner-image lowres" style="background-image:url(<?php echo wp_get_attachment_image_url( $image, 'medium' ); ?>); background-size:cover;"></div>
+					<?php else: ?>
+						<div class="banner-image lowres" style="background-image:url(<?php the_post_thumbnail_url( 'small' ); ?>); background-size:cover;"></div>
+					<?php endif; ?>
+				
+					<div class="maxwidth" style="position:relative; max-width:32em; margin:auto;">
+						<header class=""><h2><?php the_sub_field('check_block_title'); ?></h2></header>
+	    	    	<?php if( have_rows('checkbox_repeater') ): ?>
+						<?php while ( have_rows('checkbox_repeater') ) : the_row(); ?>
+
+						<p><img class="checkmark" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502741204/checkmark_quqbos.png" alt="&#x2714;" />
+					  	<?php the_sub_field('check_item'); ?></p>
+
+					<?php endwhile; ?>
+				</div>
+				<?php echo '</section>';
+			endif;
+        endif;
+        if( get_row_layout() == 'add_basic_text_block' ): ?>
+
+				<section class="entry-content">
+					<div class="maxwidth"><?php the_sub_field('text_block'); ?></div>
+				</section>
+
+        <?php endif;  
+		if( get_row_layout() == 'add_guarantee_box' ): ?>
+			<section class="checkbox-list" >
+				<div class="banner-image lowres" style="background-image:url(<?php the_post_thumbnail_url( 'small' ); ?>); background-size:cover;"></div>
+				<div class="maxwidth" style="position:relative;">
+					<?php the_sub_field('guarantee_box'); ?>
+				</div>
+			</section>
+		<?php endif; ?>
+    <?php endwhile;
+else :
+    // no layouts found
+endif; ?>
+
+
+<?php if ( $post->post_content!=="" ): ?>
 	<section class="entry-content">
 	  <div class="maxwidth">
 			<?php the_content(); ?>
 	  </div>
 	</section>
+<?php endif; ?>
 
+
+
+
+
+<!-- Service Page Form -->
+<?php if( get_field('include_quick_estimate') ): ?>
+<section class="service-form">
+ <div class="maxwidth">
+	<?php the_field('choose_service_page_form', 'option'); ?>
+ </div>
+</section>
+<?php endif; ?>
 
 
 
 <!-- Show Child Pages For Services -->
  
-<section id="featured-services" class="child-pages featured-services"><div class="inner maxwidth"> 
+<section id="featured-services" class="child-pages featured-services"><div class="inner"> 
 <?php
 $parent = $post->post_parent == 0 ? $post->ID : $post->post_parent;
 
@@ -82,6 +144,14 @@ if ( ! empty($child_pages) ) {
 
 
 
+ 
+
+
+<?php get_template_part( 'service', 'areas' ); ?>
+
+
+
+
 
  </article>
 	
@@ -90,5 +160,6 @@ if ( ! empty($child_pages) ) {
 <?php endwhile; endif; ?>
 </section>
 
- 
+</div>
+  
 <?php get_footer(); ?>

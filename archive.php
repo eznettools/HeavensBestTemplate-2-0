@@ -1,32 +1,72 @@
 <?php
-acf_form_head();
-get_header(); 
+  get_header(); 
 ?>
 
-<main id="content" role="main">
+<main id="content" role="main" class="reviews ">
 
-	
-<section class="reviews maxwidth">
+<article class="entry-content">
 
-	<header >
- 	<h1><b> Reviews For <?php single_term_title(); ?>  </b></h1>
+	<header class="section-header">
+ 	<h1><small>Reviews for</small> <?php single_term_title(); ?></h1>
 	</header>
 
 
 
 
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-		<blockquote>
-		 <?php the_field('review_text'); ?> 
-		<cite> &mdash;<?php the_title(); ?> </cite>
-		</blockquote>
+ 
+<section class="review-wrapper">
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-	<?php endwhile; endif; ?>
+
+			<div class="h-review">
+				<blockquote>
+				 <?php $starCount = get_field('rating'); $percent = $starCount * 20;  ?>
+
+				<cite class="p-name"><?php the_title(); ?></cite>
+				<time class="dt-published" datetime="<?php the_time('Y-m-d h:i'); ?>"><?php the_time('M j, Y'); ?></time> 
+				<?php if( $starCount ): ?>
+
+				<?php $ratingTotal += $starCount; $ratingCount++; $average = $ratingTotal / $ratingCount ?>
+
+					<data class="p-rating show-stars-wrapper" value="<?php echo $starCount ?>" title="<?php echo $starCount ?> Stars" >&#9733;&#9733;&#9733;&#9733;&#9733;
+						<div class="show-stars gray" style="width:100%;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+						<div class="show-stars colored" style="width:<?php echo $percent ?>%;  ">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+					</data>	
+				<div style="display:none;"><?php echo $ratingTotal; ?>/<?php echo $ratingCount; ?>=<?php echo number_format($average,1); ?></div>
+				<?php endif; ?>
+				<div class="e-content">
+				  <p>
+					<?php the_field('review_text'); ?>  
+				  </p>
+				</div>				
+				</blockquote>
+ 			</div>
+<?php endwhile; endif; ?>
+</section>
 	
 
+<div id="review-form" class="maxwidth review-form">
+	<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 11, 'title' => false, 'description' => false ) ); ?>
+</div>
 
+<script>
+jQuery(document).ready(function( $ ) {
 
+$('.frm_scale label').css('color','transparent');
+$('.frm_scale input').css('display','none');
+
+$('.frm_scale input').click(function() {
+  var Parent = $(this).parent().parent();
+  Parent.siblings().removeClass('selected');
+  Parent.addClass('selected');
+  Parent.prevAll().addClass('selected');
+});
+
+});
+</script>
+
+<!--
 <h2>Write a Testimonial...</h2>
 	<?php	
 	acf_form(array(
@@ -41,36 +81,16 @@ get_header();
 		)
 	));
 	?>
-
-</section>
-
+-->
 
 
 
+</article>
 
 
-<!-- Show Services Areas -->
-<header class="blue-header"><h2 class="maxwidth">Service Areas</h2></header> 
-<section class="blue-box service-areas">
- <div class="maxwidth">
+<?php get_template_part( 'google', 'review' ); ?>
 
-<?php if( get_field('override_service_areas','option') ): ?>
-	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
-<?php else: ?>
-
-<ul class="area-list">
-    <?php wp_list_categories( array(
-        'orderby'    => 'name',
-	'title_li' => '',
-	'hierarchical' => false,
-	'taxonomy' => 'location',
-	'hide_empty' => 0
-    ) ); ?>
-</ul>
-<?php endif; ?>
-
- </div>
-</section>
+<?php get_template_part( 'service', 'areas' ); ?>
 
 
 
@@ -81,6 +101,6 @@ get_header();
 </style>
 
 </main>
-
+</div>
 
 <?php get_footer(); ?>

@@ -241,7 +241,6 @@ border-radius:6px;
 
 /*==== Spring Theme =====*/
 
-
 .spring .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497977864/spring-background_t2hb7y.jpg); background-color:#e2f9ff; color:#ee2a54; }
 
 .spring .form-wrapper { background:rgba(240,255,255,.82); box-shadow: 0 1px 4px rgba(0,0,0,.4); color:#b14a3d; }
@@ -252,9 +251,17 @@ border-radius:6px;
 .spring .phone-footer {background:#8846BD; color:white;}
 .spring .address-footer {background:#FFE886; color:#622593;}
 
+/*===== Summer Theme =====*/
 
+.summer .primary-section {background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1502468492/summer-background_sarzk2.jpg); background-color:#71c448; background-attachment:fixed;}
 
+.summer .landing-header h1 {text-shadow: 0.02em 0.02em 0.03em #085128;}
+.summer .text-block { text-shadow: 2px 2px 2px #085128; }
+.summer .form-wrapper {color:#b91616;}
 
+.summer .extra-info {background: #20831D;}
+.summer .phone-footer {background:#0A661E;}
+.summer .address-footer {background:#054A12;}
 
 /*:::::::::::::::::::::::::::::::::::: Media Queries ::::::::::::::::::::::::::::::::::::::::::::*/
 @media (min-width:800px) {
