@@ -25,7 +25,9 @@
 		<?php } ?>
 		<div class="textbox">
 			<h1><span class="cleaning-title"><?php the_field('banner_title'); ?></span>
-			<big class="franchise-area-title"><?php the_field('franchise_area_name'); ?></big>
+			<big class="franchise-area-title"> 
+				<?php if( get_field('franchise_area_name') ) { the_field('franchise_area_name'); } else { the_field('primary_location_name','option'); } ?>
+			</big>
 			</h1>
 			<a class="primary button" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>
 		</div>
@@ -96,7 +98,7 @@
 <!--<?php endwhile; endif; ?>-->
 
 
-<?php if( get_field('include_coupons_on_homepage') ): ?>
+<?php if( get_field('include_coupons_on_homepage') and get_field('special_deal_post') ): ?>
 	<section id="coupons" class="coupons">
 		<header class="section-header">
 			<?php the_field('coupon_title'); ?>
