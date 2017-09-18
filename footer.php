@@ -97,8 +97,10 @@ $('.topnav li:has(ul)' ).doubleTapToGo();
 
 </script>
  
-
 </div>
+
+<?php the_field('general_footer_code', 'option'); ?>
+
 <?php wp_footer(); ?>
 </body>
 </html>

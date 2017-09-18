@@ -12,7 +12,7 @@
 		<?php if( get_field('banner_image') == true ) { ?>
 			<?php $image = get_field('banner_image'); $size = 'large'; ?>
 			<?php if( get_field('video_background') ): ?>
-			<video muted autoplay playsinline>
+			<video muted autoplay <?php if( get_field('loop') ): ?>loop<?php endif; ?> playsinline>
 				<source src="<?php the_field('video_url'); ?>" type="video/mp4">
 			</video>
 			<?php else: ?>
