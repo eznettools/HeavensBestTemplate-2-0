@@ -7,9 +7,15 @@
 <article class="entry-content">
 
 	<header class="section-header">
- 	<h1><small>Reviews for</small> <?php single_term_title(); ?></h1>
-	</header>
+	<?php $queried_object = get_queried_object(); $taxonomy = $queried_object->taxonomy; $term_id = $queried_object->term_id;  ?>
 
+	<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
+ 		<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
+	<?php else: ?>
+ 		<h1><small>Reviews for</small> <?php single_term_title(); ?></h1>
+	<?php endif; ?>
+	<?php echo term_description(); ?> 
+	</header>
 
 
 
@@ -17,7 +23,6 @@
  
 <section class="review-wrapper">
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-
 
 			<div class="h-review">
 				<blockquote>

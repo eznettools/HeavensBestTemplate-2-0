@@ -12,8 +12,6 @@
 		<?php the_content(); ?>
 
 
-
-
 		<?php if( get_field('show_reviews') ): ?>
 		<section class="review-wrapper">
 			<?php $args = array( 'post_type' => 'review', 'posts_per_page' => 46 );

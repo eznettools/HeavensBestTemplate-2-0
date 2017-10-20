@@ -5,8 +5,9 @@
 
 <?php if( get_field('override_service_areas','option') ): ?>
 	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
-<?php else: ?>
+<?php else: ?> 
 
+ 
 <ul class="area-list">
     <?php wp_list_categories( array(
         'orderby'    => 'name',
@@ -17,6 +18,6 @@
     ) ); ?>
 </ul>
 <?php endif; ?>
-
+ 
  </div>
 </section>

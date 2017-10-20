@@ -243,8 +243,7 @@ function yoasttobottom() {
 add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
 
 
-/*  Add responsive container to embeds
-/* ------------------------------------ */ 
+/*  Add responsive container to embeds */
 function alx_embed_html( $html ) {
     return '<div class="video-container">' . $html . '</div>';
 }

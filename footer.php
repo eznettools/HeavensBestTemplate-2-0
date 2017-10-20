@@ -29,7 +29,14 @@
 
 
 <div class="vcard" style="clear:both; text-align:center; padding:10px;">
-   <strong class="fn org">Heaven's Best Carpet Cleaners - <?php the_field('primary_location_name', 'option'); ?></strong> 
+   <strong class="fn org">
+	<?php if( get_field('carpet_cleaning_title','option') ): ?>
+		<span><?php the_field('carpet_cleaning_title', 'option'); ?></span> -
+	<?php else: ?>
+		<span>Heaven's Best Carpet Cleaners - </span>
+	<?php endif; ?>
+	<?php the_field('primary_location_name', 'option'); ?>
+	</strong> 
      <div class="adr"> 
 		<img src="<?php the_field('logo_url','option'); ?>" width="50" class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>

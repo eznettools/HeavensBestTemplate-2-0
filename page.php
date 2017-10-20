@@ -9,20 +9,52 @@
 	<?php if( is_page('Home') ): ?>
 
 	<section class="banner">
-		<?php if( get_field('banner_image') == true ) { ?>
-			<?php $image = get_field('banner_image'); $size = 'large'; ?>
-			<?php if( get_field('video_background') ): ?>
+		<?php if( get_field('banner_type') == 'video' ): ?>
+
 			<video muted autoplay <?php if( get_field('loop') ): ?>loop<?php endif; ?> playsinline>
 				<source src="<?php the_field('video_url'); ?>" type="video/mp4">
 			</video>
-			<?php else: ?>
-				<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
-			<?php endif; ?>
+
+		<?php elseif( get_field('banner_type') == 'image' ): ?>
+
+			<?php $image = get_field('banner_image'); $size = 'large'; ?>
+			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
+
+		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
+				<?php if( have_rows('slides') ): ?>
+				<div class="Wallop Wallop--fade">
+					<ul class="Wallop-list">
+					<?php while( have_rows('slides') ): the_row(); $image = get_sub_field('image'); ?>
+						<div style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></div>
+					<?php endwhile; ?>
+					</ul>
+	    	<button class="Wallop-buttonPrevious">&lsaquo;</button>
+    		<button class="Wallop-buttonNext">&rsaquo;</button>
+				</div>
+				<?php endif; ?>
+		<script>
+		jQuery(document).ready(function( $ ) {
+			var wallopEl = document.querySelector('.Wallop');
+			var wallop = new Wallop(wallopEl);
+autoplay(5500);
+function autoplay(interval) {
+  var lastTime = 0;  
+  function frame(timestamp) {
+    var update = timestamp - lastTime >= interval;
+    if (update) {
+      wallop.next();
+      lastTime = timestamp;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+};
+		});
+		</script>
+		<?php endif; ?>
 			
-		<?php } else { ?>
-			<div style="background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1496775388/girl-carpet_ze08yo.jpg);" class="image-box "></div>
-			<!--<img src="https://res.cloudinary.com/ez-nettools/image/upload/v1496775388/girl-carpet_ze08yo.jpg" />-->
-		<?php } ?>
 		<div class="textbox">
 			<h1><span class="cleaning-title"><?php the_field('banner_title'); ?></span>
 			<big class="franchise-area-title"> 
