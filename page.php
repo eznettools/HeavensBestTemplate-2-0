@@ -21,8 +21,8 @@
 			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
 
 		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
 				<?php if( have_rows('slides') ): ?>
 				<div class="Wallop Wallop--fade">
 					<ul class="Wallop-list">
@@ -38,21 +38,31 @@
 		jQuery(document).ready(function( $ ) {
 			var wallopEl = document.querySelector('.Wallop');
 			var wallop = new Wallop(wallopEl);
-autoplay(5500);
-function autoplay(interval) {
-  var lastTime = 0;  
-  function frame(timestamp) {
-    var update = timestamp - lastTime >= interval;
-    if (update) {
-      wallop.next();
-      lastTime = timestamp;
-    }
-    requestAnimationFrame(frame);
-  }
-  requestAnimationFrame(frame);
-};
+			autoplay(5500);
+			function autoplay(interval) {
+			  var lastTime = 0;  
+			  function frame(timestamp) {
+			    var update = timestamp - lastTime >= interval;
+				    if (update) {
+				      wallop.next();
+				      lastTime = timestamp;
+				    }
+			    requestAnimationFrame(frame);
+				  }
+			  requestAnimationFrame(frame);
+			};
 		});
 		</script>
+
+		<?php else: ?> <!-- Fallback so old templates don't get broken in update -->
+			<?php if( get_field('video_background') ): ?>
+			<video muted autoplay <?php if( get_field('loop') ): ?>loop<?php endif; ?> playsinline>
+				<source src="<?php the_field('video_url'); ?>" type="video/mp4">
+			</video>
+			<?php else: ?>
+				<?php $image = get_field('banner_image'); $size = 'large'; ?>
+				<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
+			<?php endif; ?>
 		<?php endif; ?>
 			
 		<div class="textbox">

@@ -25,7 +25,10 @@
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
 			<div class="h-review">
+			<?php edit_post_link(); ?>
+
 				<blockquote>
+				
 				 <?php $starCount = get_field('rating'); $percent = $starCount * 20;  ?>
 
 				<cite class="p-name"><?php the_title(); ?></cite>

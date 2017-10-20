@@ -5,7 +5,7 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.1.4
+Version: 1.1.5
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Tags: custom-menu, featured-images, microformats, carpet cleaners
@@ -133,7 +133,8 @@ margin:2em;
 }
 
 .review-wrapper {display:flex; flex-wrap:wrap; text-align:center;}
-.h-review {display:inline-block; border:solid 1px #eee; flex: 1 1 400px;}
+.h-review {display:inline-block; position:relative; border:solid 1px #eee; flex: 1 1 400px;}
+.h-review .post-edit-link {position:absolute; top:0; right:0; display:block; padding:.5em; text-decoration:none; background:rgba(90,190,255,.2); }
 .dt-published { display:block; color:#999; font-size:.8em; margin:.3em 0; }
 .e-content{display:block; //text-align:left; line-height:1.2; font-size:.95em; }
 .e-content p {line-height:1.2; max-width:380px; margin:auto; }
