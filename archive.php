@@ -6,15 +6,16 @@
 
 <article class="entry-content">
 
-	<header class="section-header">
-	<?php $queried_object = get_queried_object(); $taxonomy = $queried_object->taxonomy; $term_id = $queried_object->term_id;  ?>
+	<header class="section-header maxwidth">
+		<?php $queried_object = get_queried_object(); $taxonomy = $queried_object->taxonomy; $term_id = $queried_object->term_id;  ?>
 
-	<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
- 		<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
-	<?php else: ?>
- 		<h1><small>Reviews for</small> <?php single_term_title(); ?></h1>
-	<?php endif; ?>
-	<?php echo term_description(); ?> 
+		<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
+ 			<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
+		<?php else: ?>
+ 		<h1><small>Carpet Cleaning</small> <?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?></h1>
+		<?php endif; ?>
+
+		<?php echo term_description(); ?> 
 	</header>
 
 
