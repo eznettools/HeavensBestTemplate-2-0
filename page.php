@@ -79,7 +79,7 @@
 	<?php endif; ?>
 
 
-
+	<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>
 
 
 	<?php if( have_rows('featured_services') ): ?>
