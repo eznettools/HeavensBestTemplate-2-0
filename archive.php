@@ -6,17 +6,34 @@
 
 <article class="entry-content">
 
-	<header class="section-header maxwidth">
-		<?php $queried_object = get_queried_object(); $taxonomy = $queried_object->taxonomy; $term_id = $queried_object->term_id;  ?>
 
+	<header class="banner">
+	<?php $queried_object = get_queried_object(); $taxonomy = $queried_object->taxonomy; $term_id = $queried_object->term_id;  ?>
+		<?php if( get_field('custom_banner_image', $taxonomy . '_' . $term_id) ): ?>
+			<div style="background-image:url(<?php the_field('custom_banner_image', $taxonomy . '_' . $term_id); ?>);" class="image-box "></div> 
+		<?php else: ?>
+			<?php $image = get_field('banner_image', 17); $size = 'large'; ?>
+			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
+		<?php endif; ?>
+		<div class="textbox">
 		<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
  			<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
 		<?php else: ?>
- 		<h1><small>Carpet Cleaning</small> <?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?></h1>
+			<h1><span class="cleaning-title">Carpet Cleaning </span>
+			<big class="franchise-area-title">
+				<?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?>
+			</big>
+			</h1>
 		<?php endif; ?>
-
-		<?php echo term_description(); ?> 
+			<a class="primary button" href="<?php the_field('button_link',17); ?>"><?php the_field('button_text',17); ?></a>
+		</div>
 	</header>
+
+	<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text',17); ?></a>
+
+	<div class="maxwidth">
+		<?php echo term_description(); ?> 
+	</div>
 
 
 
