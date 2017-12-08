@@ -13,23 +13,18 @@ get_header();
 
 
 
-
 	<section class="entry-content">
 	  <div class="maxwidth">
 
 		<?php the_content(); ?>
- 
-
-
- 
-
 
 	  </div>
 	</section>
 
 
 
-
+ 
+ 
 
 
  

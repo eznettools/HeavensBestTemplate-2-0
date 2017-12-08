@@ -91,13 +91,11 @@
 	  <div class="inner">
 
 	<?php while( have_rows('featured_services') ): the_row(); 
-		$image = get_sub_field('featured_image'); 
-		$content = get_sub_field('featured_name');
-		$link = get_sub_field('featured_link');
+		$image = get_sub_field('featured_image'); $content = get_sub_field('featured_name'); $link = get_sub_field('featured_link');
 		?>
-		<figure style="background-image:url(<?php echo $image['url']; ?>);   " >
+		<figure style="background-image:url(<?php echo $image['sizes']['medium']; ?>);   " >
 			<?php if( $link ): ?><a href="<?php echo $link; ?>"><?php endif; ?>
-				<!--<img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" />-->
+				<!--<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />-->
 				<figcaption><?php echo $content; ?></figcaption>
 			<?php if( $link ): ?></a><?php endif; ?>
 		</figure>

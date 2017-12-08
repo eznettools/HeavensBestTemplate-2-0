@@ -5,7 +5,7 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.1.9
+Version: 1.2.0
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Tags: custom-menu, featured-images, microformats, carpet cleaners
@@ -139,10 +139,10 @@ margin:2em;
 .h-review {display:inline-block; position:relative; border:solid 1px #eee; flex: 1 1 400px;}
 .h-review .post-edit-link {position:absolute; top:0; right:0; display:block; padding:.5em; text-decoration:none; background:rgba(90,190,255,.2); }
 .dt-published { display:block; color:#999; font-size:.8em; margin:.3em 0; }
-.e-content{display:block; //text-align:left; line-height:1.2; font-size:.95em; }
+.e-content{display:block; line-height:1.2; font-size:.95em; }
 .e-content p {line-height:1.2; max-width:380px; margin:auto; }
 
-cite {font-style:normal; font-size:1.1em; font-weight:bold; //display:block; margin:4px; }
+cite {font-style:normal; font-size:1.1em; font-weight:bold; margin:4px; }
 cite .city-label {font-weight:normal;}
 blockquote p {margin:.5em 0;}
 
@@ -382,16 +382,26 @@ background-size:cover;
 
 
 /*--- Wallop Slideshow -----*/
-.Wallop {//position:relative;}
+.slideshow {
+    padding-bottom: 32.5%;
+    background: #2e3e69;
+    position: relative;
+}
+.Wallop { }
 .Wallop-item {
   visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
+  height: 100%;
+  background-size:cover;
 }
 .Wallop-list {
 margin:0; padding:0;
+position: absolute;
+width: 100%;
+height: 100%;
 }
 .Wallop-item--current {
   visibility: visible;
@@ -574,7 +584,6 @@ align-items: flex-end;
 
 /*------------- Logos, Icons (BBB, Angies List, etc) ------------------*/
 .accolade-bar {
-//box-shadow: inset 0 2px 8px rgba(0,0,0,.15);
 display:flex;
 justify-content:space-around;
 align-items: center;
@@ -656,14 +665,13 @@ text-shadow:2px 2px 4px rgba(0,0,0,.35);
 .checkbox-list .banner-image.lowres{opacity:0.5;}
 .checkbox-list .section-header {padding-bottom:0.25em;}
 .checkbox-list p {margin:.6em 0; }
-.checkbox-list h2 {//text-align:center; font-size:2em;}
+.checkbox-list h2 {  font-size:2em;}
 .checkbox-list h2:after {
 	content:'';
 	display:block;
 	border:none;
 	border-top: solid 1px white;
 	box-shadow: 1px 1px 3px rgba(0,0,0,.5);
-	//width: 1.5em;
 	margin:0.5em 0;
 }
 .checkmark {
@@ -845,9 +853,9 @@ cursor:pointer;
 .frm_top_container { }
 .frm_primary_label { flex: 1 1 100%; }
 .frm_scale {float:left; margin:-8px 0 -24px; }
-.frm_scale label {display:block; padding:1px; line-height:1; //color:transparent;}
+.frm_scale label {display:block; padding:1px; line-height:1;  }
 .frm_scale label:before {content:"\2605"; color:#ccc; display:block; font-size:250%; }
-.frm_scale input {//display:none; opacity:.8;}
+.frm_scale input { opacity:.8;}
 .frm_top_container:hover label:before {  color:orange; transform:scale(1.1); transition:.15s cubic-bezier(.18,.89,.32,1.28); }
 .frm_top_container .frm_scale:hover ~ div label:before { color:#ccc; background:transparent; transform:scale(1); }
 .selected label:before {  color:orange;  }
@@ -999,7 +1007,6 @@ clear:both;
 
 .before-after {
 padding:10px;
-//margin-bottom:10px;
 }
 
 .before-after-set {
