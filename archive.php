@@ -132,8 +132,13 @@ jQuery(document).ready(function( $ ) {
  			</div>
 <?php endwhile; endif; ?>
 </section>
-	
-<!--
+
+<?php get_template_part( 'nav', 'below' ); ?>
+ 
+	<div style="text-align:right; font-size:.8em; padding:6px 0; color:#888;">
+		Overall Score: <?php echo number_format($average,1); ?> 
+	</div>
+ 
 <div id="review-form" class="maxwidth review-form">
 	<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 11, 'title' => false, 'description' => false ) ); ?>
 </div>
@@ -152,10 +157,20 @@ $('.frm_scale input').click(function() {
 
 });
 </script>
--->
+ 
  
 
-
+<script type="application/ld+json">
+{ "@context": "http://schema.org",
+  "@type": "Product",
+  "name": "<?php wp_title(); ?>",
+  "aggregateRating":
+    {"@type": "AggregateRating",
+     "ratingValue": "<?php echo number_format($average,1); ?>",
+     "reviewCount": "<?php echo $ratingCount; ?>"
+    }
+}
+</script>
 
 
 </article>
@@ -164,8 +179,6 @@ $('.frm_scale input').click(function() {
 <?php get_template_part( 'google', 'review' ); ?>
 
 <?php get_template_part( 'service', 'areas' ); ?>
-
-
 
 
 

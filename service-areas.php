@@ -1,5 +1,5 @@
 <section class="service-areas">
-<header class="section-header"><h2 class="maxwidth">Service Areas</h2></header> 
+<header class="section-header"><h2 class="maxwidth">Heaven's Best Service Area</h2></header> 
 
  <div class="maxwidth">
 

@@ -31,7 +31,7 @@ function blankslate_load_scripts()
 {
  
 		wp_deregister_script('jquery');
-		wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js', false, '1.8.1');
+		wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, '1.8.1');
 		wp_enqueue_script('jquery');
 	wp_enqueue_script( 'doubletaptogo', get_stylesheet_directory_uri() . '/doubletaptogo.min.js', array( 'jquery' ) );	
 	//wp_enqueue_script( 'formidable', '/wp-content/plugins/formidable/js/formidable.min.js', array( 'jquery' ) );	
@@ -250,4 +250,35 @@ function alx_embed_html( $html ) {
  
 add_filter( 'embed_oembed_html', 'alx_embed_html', 10, 3 );
 add_filter( 'video_embed_html', 'alx_embed_html' ); // Jetpack
+
+
+
+
+
+// Returns true if user has specific role 
+function check_user_role( $role, $user_id = null ) {
+    if ( is_numeric( $user_id ) )
+        $user = get_userdata( $user_id );
+    else
+        $user = wp_get_current_user();
+    if ( empty( $user ) )
+        return false;
+    return in_array( $role, (array) $user->roles );
+}
+ 
+// Disable WordPress SEO meta box for all roles other than administrator and seo
+function wpse_init(){
+    if( !(check_user_role('seo') || check_user_role('administrator')) ){
+        // Remove page analysis columns from post lists, also SEO status on post editor
+        add_filter('wpseo_use_page_analysis', '__return_false');
+        // Remove Yoast meta boxes
+        add_action('add_meta_boxes', 'disable_seo_metabox', 100000);
+    }   
+}
+add_action('init', 'wpse_init');
+ 
+function disable_seo_metabox(){
+    remove_meta_box('wpseo_meta', 'post', 'normal');
+    remove_meta_box('wpseo_meta', 'page', 'normal');
+}
 

@@ -7,20 +7,16 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 	<?php wp_head(); ?>
 
+	<?php if( get_field('custom_css_toggle') ): ?>
+		<style>
+		/*-- Local Page CSS --*/ 
+		<?php the_field('local_css'); ?>
+	</style>
+	<?php endif; ?>
 
- 
-
-<?php if( get_field('custom_css_toggle') ): ?>
-	<style>
-	/*-- Local Page CSS --*/ 
-	<?php the_field('local_css'); ?>
-</style>
-<?php endif; ?>
-
-<?php the_field('general_headcode', 'option'); ?>
+	<?php the_field('general_headcode', 'option'); ?>
 
 </head>
-
 
 
 <body <?php body_class(); ?>>
@@ -42,7 +38,7 @@
 			<?php if( get_field('override_phone_number_in_header','option') ): ?>
 					<?php the_field('manual_phone_number_html','option'); ?>
 			<?php else: ?>
-				<img class="phone-icon" style="width:.93em; margin:0 -2px -0.1em;" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502460774/icon-telephone_vii2sr.png" />
+				<img alt=" " class="phone-icon" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502460774/icon-telephone_vii2sr.png" />
 				<?php the_field('phone_number', 'option'); ?>
 			<?php endif; ?>
 		</div>
@@ -58,7 +54,7 @@
    <header class="sticky-header">
     <div class="header mainWrapper">
  	<a href="/" class="logo">
-		<img src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774893/logo-flat_hr0qck.png" />
+		<img alt="Heaven's Best" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774893/logo-flat_hr0qck.png" />
 	</a>
 	<nav id="menu" class="topnav" role="navigation">
 		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false ) ); ?>

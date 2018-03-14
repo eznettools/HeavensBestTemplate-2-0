@@ -8,7 +8,7 @@
 
 
 
-<div class="sticky-call-action">
+<div class="sticky-call-action active">
   <div class="popup">
 	<?php the_field('sticky_call_to_action', 'option'); ?>
   </div>
@@ -31,28 +31,31 @@
 <div class="vcard" style="clear:both; text-align:center; padding:10px;">
    <strong class="fn org">
 	<?php if( get_field('carpet_cleaning_title','option') ): ?>
-		<span><?php the_field('carpet_cleaning_title', 'option'); ?></span> -
+		<span><?php the_field('carpet_cleaning_title', 'option'); ?></span>
 	<?php else: ?>
-		<span>Heaven's Best Carpet Cleaners - </span>
+		<span>Heaven's Best Carpet Cleaners </span>
 	<?php endif; ?>
 	<?php the_field('primary_location_name', 'option'); ?>
 	</strong> 
      <div class="adr"> 
-		<img src="<?php the_field('logo_url','option'); ?>" width="50" class="photo" style="display:none;">
+		<img src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
         <span class="locality"><?php the_field('city', 'option'); ?></span>, 
         <span class="region"><?php the_field('state_or_province', 'option'); ?></span>,
         <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
      </div>   
    Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
+	<div class="pricerange">Starting at $99</div>
 
 </div>
 
 
+
 	<div id="copyright">
 
-		 <p>&copy; <?php echo date('Y'); ?> <a href="http://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.</p>
-
+		 <p>&copy; <?php echo date('Y'); ?> <a href="http://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  </p> 	
+		<p>Theme Version: <?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?></p>
+		
 		<p style="margin-bottom:0;"><a class="button blue franchise-sales" href="http://www.heavensbest.com/">Franchise Opportunities</a></p>
 
 	</div>
@@ -70,11 +73,11 @@
 jQuery(document).ready(function( $ ) {
 /*--- Sticky Header ---*/
 var $document = $(document),
-    $element = $('.sticky-header, .sticky-call-action'),
+    $element = $('.sticky-header '),
     className = 'active';
 
 $document.scroll(function() {
-  if ($document.scrollTop() >= 280) {
+  if ($document.scrollTop() >= 80) {
     $element.addClass(className);
   } else {
     $element.removeClass(className);
@@ -93,12 +96,11 @@ Headers.click(function(){
 */
 
 var len = $('script[src*="Javascript/MyScript.js"]').length; 
- 
+
+	
 /*--- Mobile Dropdown fix ---*/
 
 $('.topnav li:has(ul)' ).doubleTapToGo();
-
- 
 
 });
 

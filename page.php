@@ -6,15 +6,12 @@
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
-	<?php if( is_page('Home') ): ?>
-
-	<section class="banner">
+<?php if( is_page('Home') ): ?>
+<section class="banner">
 		<?php if( get_field('banner_type') == 'video' ): ?>
-
 			<video muted autoplay <?php if( get_field('loop') ): ?>loop<?php endif; ?> playsinline>
 				<source src="<?php the_field('video_url'); ?>" type="video/mp4">
 			</video>
-
 		<?php elseif( get_field('banner_type') == 'image' ): ?>
 
 			<?php $image = get_field('banner_image'); $size = 'large'; ?>
@@ -23,17 +20,19 @@
 		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
-				<?php if( have_rows('slides') ): ?>
+			<?php if( have_rows('slides') ): ?>
+			<section class="slideshow">
 				<div class="Wallop Wallop--fade">
 					<ul class="Wallop-list">
 					<?php while( have_rows('slides') ): the_row(); $image = get_sub_field('image'); ?>
-						<div style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></div>
+						<li style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></li>
 					<?php endwhile; ?>
 					</ul>
 	    	<button class="Wallop-buttonPrevious">&lsaquo;</button>
     		<button class="Wallop-buttonNext">&rsaquo;</button>
 				</div>
-				<?php endif; ?>
+			</section>
+			<?php endif; ?>
 		<script>
 		jQuery(document).ready(function( $ ) {
 			var wallopEl = document.querySelector('.Wallop');
@@ -64,23 +63,28 @@
 				<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
 			<?php endif; ?>
 		<?php endif; ?>
-			
+
+		<?php if( get_field('franchise_area_name') ): ?>
 		<div class="textbox">
 			<h1><span class="cleaning-title"><?php the_field('banner_title'); ?></span>
-			<big class="franchise-area-title"> 
-				<?php if( get_field('franchise_area_name') ) { the_field('franchise_area_name'); } else { the_field('primary_location_name','option'); } ?>
+			<big class="franchise-area-title">
+				<?php the_field('franchise_area_name');  ?>
 			</big>
 			</h1>
 			<a class="primary button" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>
 		</div>
-		<img class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502310103/clouds3_rwfjfb.png" />
-	</section>
+		<?php endif; ?>
+	
+		<img alt=" " class="clouds" src="/wp-content/uploads/2018/03/clouds6.png" />
+</section>
+<?php endif; ?>
 
-	<?php endif; ?>
 
+	<!--<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>-->
 
-	<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>
-
+ <?php the_field('unique_selling_point') ;?>
+	 
+	 
 
 	<?php if( have_rows('featured_services') ): ?>
  
@@ -187,8 +191,8 @@ jQuery(document).ready(function( $ ) {
     var halfH = ( this.clientHeight / 2 );
     var coorX = ( halfW - ( event.pageX - this.offsetLeft ) );
     var coorY = ( halfH - ( event.pageY - this.offsetTop ) );
-    var degX  = ( ( coorY / halfH ) * 10 ) + 'deg'; // max. degree = 10
-    var degY  = ( ( coorX / halfW ) * -10 ) + 'deg'; // max. degree = 10
+    var degX  = ( ( coorY / halfH ) * 5 ) + 'deg'; // max. degree = 10
+    var degY  = ( ( coorX / halfW ) * -5 ) + 'deg'; // max. degree = 10
     var opacity = Math.abs(coorY *.0037)
      
     $(this).children('.shine').css('background','radial-gradient(circle at ' + coorX + '%' + coorY + '%, rgba(255,255,255,' + opacity + ') 1%, rgba(255,255,255,0) 75% )');
@@ -232,7 +236,7 @@ jQuery(document).ready(function( $ ) {
 <?php get_template_part( 'service', 'areas' ); ?>
 
 
-
+ 
 
 
  </article>
