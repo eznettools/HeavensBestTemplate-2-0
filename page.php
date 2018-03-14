@@ -75,7 +75,7 @@
 		</div>
 		<?php endif; ?>
 	
-		<img alt=" " class="clouds" src="/wp-content/uploads/2018/03/clouds6.png" />
+		<img alt=" " class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1521040505/clouds6_w73ygm.png" />
 </section>
 <?php endif; ?>
 
