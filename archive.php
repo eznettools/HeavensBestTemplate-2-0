@@ -62,8 +62,7 @@
 			<li><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.jpg'"/></li>			
 		</ul>
 	<?php endif; ?>
-	<a class="primary button" href="<?php the_field('button_link', 17); ?>"><?php the_field('button_text', 17); ?></a>
-</section>
+ </section>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/js/lightslider.min.js"></script>
 <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/css/lightslider.min.css" />
@@ -84,11 +83,14 @@ jQuery(document).ready(function( $ ) {
 </script>
 
 
-	<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text',17); ?></a>
-
+ 
 	<div class="maxwidth">
-		<h1><span>Carpet Cleaning </span><big><?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?></big></h1>
-		<?php if( term_description() ): ?>
+		<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
+ 			<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
+		<?php else: ?>
+			<h1><span>Carpet Cleaning </span><big><?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?></big></h1>
+		<?php endif; ?>
+ 		<?php if( term_description() ): ?>
 			<?php echo term_description(); ?> 
 		<?php else: ?>
 		<p>We provide quality <b>carpet cleaning services in <?php single_term_title(); ?>, <?php the_field('state_or_province','option'); ?></b> and the surrounding areas. There are several reasons to get your carpets cleaned, we recommend having it done professional every 6 to 12 months.  People love Heaven's Best Carpet Cleaning (<?php single_term_title(); ?>, <?php the_field('state_or_province','option'); ?>) because of our quality service and effective low-moisture cleaning process.  </p>
