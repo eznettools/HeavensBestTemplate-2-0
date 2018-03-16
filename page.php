@@ -183,7 +183,6 @@ if( $post_objects ): ?>
 </style>
 <script>
 jQuery(document).ready(function( $ ) {
-
 (function() {
    $( document )
     .on( "mousemove touchstart touchmove", ".coupon", function( event ) {
@@ -207,9 +206,7 @@ jQuery(document).ready(function( $ ) {
     $( this ).removeAttr( 'style' );
      $(this).children().removeAttr( 'style' );
   } );
-  
 })();
-
 });
 </script>
 <?php endif; ?>
@@ -219,24 +216,74 @@ jQuery(document).ready(function( $ ) {
 
 <?php endif;?>
 
+<?php if( have_rows('testimonial_repeater') ): ?>
+<section class="review-wrapper">
+	<?php while( have_rows('testimonial_repeater') ): the_row();  $review = get_sub_field('review'); $cite = get_sub_field('cite'); $date = get_sub_field('date');  ?>
+		<div class="h-review">
+		<blockquote>
+			 <?php $starCount = get_sub_field('rating'); $percent = $starCount * 20;  ?>
+			<cite class="p-name"><?php echo $cite; ?></cite>
+			<time class="dt-published" datetime="<?php the_time('Y-m-d h:i'); ?>"><?php echo $date; ?></time> 
+			<?php if( $starCount ): ?>
+				<?php $ratingTotal += $starCount; $ratingCount++; $average = $ratingTotal / $ratingCount ?>
+					<data class="p-rating show-stars-wrapper" value="<?php echo $starCount ?>" title="<?php echo $starCount ?> Stars" >&#9733;&#9733;&#9733;&#9733;&#9733;
+						<div class="show-stars gray" style="width:100%;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+						<div class="show-stars colored" style="width:<?php echo $percent ?>%;  ">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+					</data>	
+				<div style="display:none;"><?php echo $ratingTotal; ?>/<?php echo $ratingCount; ?>=<?php echo number_format($average,1); ?></div>
+			<?php endif; ?>
+			<div class="e-content">
+			  <p>
+				<?php echo $review; ?>  
+			  </p>
+			</div>
 
-
-
-
+		</blockquote>
+ 		</div>
+	<?php endwhile; ?>
+</section>
+<?php endif; ?>
+	 
+<?php if( current_user_can('administrator')):  ?> 
+	<div style="text-align:center; font-size:.75em; padding:6px 0; color:#666;">
+		Total Stars: <?php echo $ratingTotal; ?> / Number of Reviews: <?php echo $ratingCount; ?> = Average Rating: <?php echo number_format($average,1); ?> 
+	</div>
+<?php endif; ?>
+<script type="application/ld+json">
+{ "@context": "http://schema.org",
+  "@type": "localbusiness",
+  "name": "<?php wp_title(); ?>",
+  "image": "<?php the_field('logo_url','option'); ?>",
+  "priceRange": "<?php the_field('price_range', 'option'); ?>",
+  "telephone": "<?php the_field('phone_number', 'option'); ?>",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "<?php the_field('street_address', 'option'); ?>",
+    "addressLocality": "<?php the_field('city', 'option'); ?>",
+    "addressRegion": "<?php the_field('state_or_province', 'option'); ?>",
+    "postalCode": "<?php the_field('zip_code', 'option'); ?>"
+  },
+  "aggregateRating":
+    {"@type": "AggregateRating",
+     "ratingValue": "<?php echo number_format($average,1); ?>",
+     "reviewCount": "<?php echo $ratingCount; ?>"
+    }
+}
+</script>
+	 
+ 
 
 
  
-	<!--<?php get_template_part( 'quick', 'estimate' ); ?>-->
+<!--<?php get_template_part( 'quick', 'estimate' ); ?>-->
  
 
 <?php get_template_part( 'google', 'review' ); ?>
 
 
-
 <?php get_template_part( 'service', 'areas' ); ?>
 
 
- 
 
 
  </article>

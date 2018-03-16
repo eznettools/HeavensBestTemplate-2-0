@@ -85,7 +85,7 @@
 
 <script type="application/ld+json">
 { "@context": "http://schema.org",
-  "@type": "Product",
+  "@type": "Organization",
   "name": "<?php wp_title(); ?>",
   "aggregateRating":
     {"@type": "AggregateRating",

@@ -45,7 +45,7 @@
         <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
      </div>   
    Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
-	<div class="pricerange">Starting at $99</div>
+	<div class="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
 
 </div>
 
