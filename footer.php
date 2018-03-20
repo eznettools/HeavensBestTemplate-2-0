@@ -38,7 +38,7 @@
 	<?php the_field('primary_location_name', 'option'); ?>
 	</strong> 
      <div class="adr"> 
-		<img src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
+		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
         <span class="locality"><?php the_field('city', 'option'); ?></span>, 
         <span class="region"><?php the_field('state_or_province', 'option'); ?></span>,

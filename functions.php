@@ -251,6 +251,11 @@ function alx_embed_html( $html ) {
 add_filter( 'embed_oembed_html', 'alx_embed_html', 10, 3 );
 add_filter( 'video_embed_html', 'alx_embed_html' ); // Jetpack
 
+// Removes Related Videos for YouTube embeds.
+function iweb_modest_youtube_player( $html, $url, $args ) {
+	return str_replace( '?feature=oembed', '?feature=oembed&modestbranding=1&showinfo=0&rel=0', $html );
+}
+add_filter( 'oembed_result', 'iweb_modest_youtube_player', 10, 3 );
 
 
 
