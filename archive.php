@@ -52,20 +52,20 @@
 	<?php if( get_field('slideshow' , options) ): ?>
 		<ul>
 		<?php while( have_rows('slideshow', options) ): the_row(); $image = get_sub_field('image'); ?>
-			<li><img src="<?php echo $image; ?>" /></li>
+			<li><img alt=" " src="<?php echo $image; ?>" /></li>
 		<?php endwhile; ?>
 		</ul>
 	<?php else: ?>
 		<ul>
-			<li><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1512594452/Fast_Professional_Service_szehlc.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512594452/Fast_Professional_Service_szehlc.jpg'"/></li>
-			<li><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1512594474/safe_for_pets_and_people_jgj8io.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512594474/safe_for_pets_and_people_jgj8io.jpg'"/></li>			
-			<li><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.jpg'"/></li>			
+			<li><img alt="Fast Professional Service" src="https://res.cloudinary.com/ez-nettools/image/upload/v1512594452/Fast_Professional_Service_szehlc.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512594452/Fast_Professional_Service_szehlc.jpg' "/></li>
+			<li><img alt="Safe for Pets and People" src="https://res.cloudinary.com/ez-nettools/image/upload/v1512594474/safe_for_pets_and_people_jgj8io.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512594474/safe_for_pets_and_people_jgj8io.jpg' "/></li>			
+			<li><img alt="Dry in 1 Hour" src="https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.webp" onerror="this.onerror=null; this.src='https://res.cloudinary.com/ez-nettools/image/upload/v1512764723/Dry_in_1_Hour_mtcqdm.jpg' "/></li>			
 		</ul>
 	<?php endif; ?>
  </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/js/lightslider.min.js"></script>
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/css/lightslider.min.css" />
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/js/lightslider.min.js"></script>-->
+<!--<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/css/lightslider.min.css" />-->
 <script>
 jQuery(document).ready(function( $ ) {
   $("#slideshow ul").lightSlider({

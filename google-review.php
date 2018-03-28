@@ -1,7 +1,11 @@
  
 <section id="leave-google-review" class="leave-google-review margin background-box" style="">
 	<?php the_field('google_review_message','option'); ?>
-	<a class="primary button" href="<?php the_field('google_review_link','option'); ?>"><?php the_field('google_review_button_text','option'); ?></a>
+	<?php if( get_field('google_review_button_text','option') ): ?>
+		<a class="primary button" href="<?php the_field('google_review_link','option'); ?>">
+			<?php the_field('google_review_button_text','option'); ?>
+		</a>
+	<?php endif; ?>
 	<link rel="prerender" crossorigin href="<?php the_field('google_review_link','option'); ?>">
 	<div class="background front"></div>
 	<div class="background med"></div>

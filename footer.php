@@ -7,12 +7,11 @@
 <footer id="footer" class="footer mainWrapper" role="contentinfo">
 
 
-
-<div class="sticky-call-action active">
-  <div class="popup">
-	<?php the_field('sticky_call_to_action', 'option'); ?>
-  </div>
-</div>
+	<div class="sticky-call-action active">
+ 	 <div class="popup">
+		<?php the_field('sticky_call_to_action', 'option'); ?>
+	  </div>
+	</div>
 
 
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
@@ -50,7 +49,6 @@
 </div>
 
 
-
 	<div id="copyright">
 
 		 <p>&copy; <?php echo date('Y'); ?> <a href="http://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  </p> 	
@@ -83,17 +81,6 @@ $document.scroll(function() {
     $element.removeClass(className);
   }
 });
-
-/*--- Collapsible Blue Headers ---*/
-/* 
-var Headers = $('.blue-header');
-Headers.addClass('header-toggle open');
-//Headers.next().slideToggle(600);
-Headers.click(function(){
-	$(this).next().slideToggle(150);
-	$(this).toggleClass('open');
-});
-*/
 
 var len = $('script[src*="Javascript/MyScript.js"]').length; 
 

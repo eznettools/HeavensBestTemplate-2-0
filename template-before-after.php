@@ -50,6 +50,9 @@
 			<header class="blue-header "><h2><?php the_sub_field('section_title'); ?></h2></header>
 
         <?php endif;  
+	 	if( get_row_layout() == 'add_text_block' ):  
+	 		echo '<div class="entry-content">';	the_sub_field('text_block'); echo '</div>';
+	 	endif;
     endwhile;
 else :
     // no layouts found

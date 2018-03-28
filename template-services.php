@@ -77,8 +77,6 @@ endif; ?>
 
 
 
-
-
 <!-- Service Page Form -->
 <?php if( get_field('include_quick_estimate') ): ?>
 <section class="service-form">
@@ -107,31 +105,20 @@ $child_pages = get_pages($args);
 // show only if there are children
 if ( ! empty($child_pages) ) {
   global $post;
- 
-  foreach ( $child_pages as $post ) { setup_postdata( $post );
-  ?>
- 
-
+  foreach ( $child_pages as $post ) { setup_postdata( $post ); ?>
 	<?php $image_id = get_post_thumbnail_id(); $image_url = wp_get_attachment_image_src($image_id,'medium', true);  ?>
 
 	<figure style=background-image:url(<?php echo $image_url[0]; ?>);"  title="<?php the_title_attribute(); ?>">
 	<a id="post-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" class="post summary <?php echo get_post_type(); ?> <?php if( get_field('unfinished') ): ?> unfinished <?php endif; ?>">
 
 	<?php if ( has_post_thumbnail() ): ?>
- 
 	<?php else: ?>
-	 
 	<?php endif; ?>
  
-
 		 <figcaption><?php the_title(); ?> </figcaption>
-
- 
 
 	</a>
 	</figure>
-
-
 
   <?php
   }
@@ -143,8 +130,9 @@ if ( ! empty($child_pages) ) {
 
 
 
-
- 
+<div class="maxwidth">
+	 <?php the_field('additional_text_below_services'); ?>
+</div>
 
 
 <?php get_template_part( 'service', 'areas' ); ?>

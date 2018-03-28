@@ -18,7 +18,7 @@
 			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
 
 		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>
+			<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>-->
 			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
 			<?php if( have_rows('slides') ): ?>
 			<section class="slideshow">
@@ -244,9 +244,9 @@ jQuery(document).ready(function( $ ) {
 </section>
 <?php endif; ?>
 	 
-<?php if( current_user_can('administrator')):  ?> 
+<?php if( current_user_can('administrator') and $average ):  ?> 
 	<div style="text-align:center; font-size:.75em; padding:6px 0; color:#666;">
-		Total Stars: <?php echo $ratingTotal; ?> / Number of Reviews: <?php echo $ratingCount; ?> = Average Rating: <?php echo number_format($average,1); ?> 
+		  Average Rating: <?php echo number_format($average,1); ?> 
 	</div>
 <?php endif; ?>
 <script type="application/ld+json">
@@ -272,10 +272,6 @@ jQuery(document).ready(function( $ ) {
 </script>
 	 
  
-
-
- 
-<!--<?php get_template_part( 'quick', 'estimate' ); ?>-->
  
 
 <?php get_template_part( 'google', 'review' ); ?>

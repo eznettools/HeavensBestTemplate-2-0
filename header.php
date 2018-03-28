@@ -3,7 +3,6 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
-	<!--<link href="https://fonts.googleapis.com/css?family=Oswald:700|Roboto:400,400i,700" rel="stylesheet">-->
 	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
 	<?php wp_head(); ?>
 
@@ -23,15 +22,13 @@
 
 <div id="wrapper" class="mainWrapper hfeed">
 
-   <header id="header" class="header" role="banner">
+ <header id="header" class="header" role="banner">
 	
- 	<a href="/" class="logo">
-		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>" />
-	</a>
+ 	<a href="/" class="logo"><img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>" /></a>
 
 	<aside class="header-aside">
 		<div class="dry-ribbon">
-		<img alt="Dry in 1 Hour" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774919/dry-banner-flat_i3nrpr.png" />
+			<img alt="Dry in 1 Hour" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774919/dry-banner-flat_i3nrpr.png" />
 		</div>
 
 		<div class="phone">
@@ -48,10 +45,9 @@
 		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false ) ); ?>
 	</nav>
 
-	
-   </header>
+ </header>
 
-   <header class="sticky-header">
+ <header class="sticky-header">
     <div class="header mainWrapper">
  	<a href="/" class="logo">
 		<img alt="Heaven's Best" src="https://res.cloudinary.com/ez-nettools/image/upload/v1496774893/logo-flat_hr0qck.png" />
@@ -60,14 +56,11 @@
 		<?php wp_nav_menu( array( 'theme_location' => 'main-menu', 'container' => false ) ); ?>
 	</nav>
 
-
-
 	<aside class="header-aside">
 		<div class="phone"><?php the_field('phone_number', 'option'); ?></div>
 	</aside>
     </div>
-   </header>
-
+ </header>
 
 	
 	<div id="container">

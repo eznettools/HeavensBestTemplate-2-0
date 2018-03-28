@@ -138,6 +138,7 @@ font:inherit;
 padding:.45em;
 border:solid 1px #aaa;
 border-radius:3px;
+box-sizing: border-box;
 }
 .frm_form_field .frm_radio , .frm_form_field .frm_checkbox { display:inline-block;}
 .frm_form_field .frm_radio input, .frm_form_field .frm_checkbox input {width:auto;}

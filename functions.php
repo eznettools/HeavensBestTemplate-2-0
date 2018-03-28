@@ -30,13 +30,19 @@ add_action( 'wp_enqueue_scripts', 'blankslate_load_scripts' );
 function blankslate_load_scripts()
 {
  
-		wp_deregister_script('jquery');
-		wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, '1.8.1');
-		wp_enqueue_script('jquery');
-	wp_enqueue_script( 'doubletaptogo', get_stylesheet_directory_uri() . '/doubletaptogo.min.js', array( 'jquery' ) );	
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, '1.8.1');
+	wp_enqueue_script('jquery');
+	wp_enqueue_script( 'doubletaptogo', get_stylesheet_directory_uri() . '/doubletaptogo.min.js', array( 'jquery' ) );
+	wp_enqueue_script( 'wallop', 'https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js'  );
+	wp_enqueue_style( 'wallopcss', 'https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css'   );
+	
 	//wp_enqueue_script( 'formidable', '/wp-content/plugins/formidable/js/formidable.min.js', array( 'jquery' ) );	
-	//wp_enqueue_script( 'starRating', '/wp-content/plugins/formidable/pro/js/jquery.rating.min.js', array( 'jquery' ) );	
-
+	//wp_enqueue_script( 'starRating', '/wp-content/plugins/formidable/pro/js/jquery.rating.min.js', array( 'jquery' ) );
+	if ( is_archive() ) {
+		wp_enqueue_script( 'lightslider', 'https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/js/lightslider.min.js', array( 'jquery' ) );
+		wp_enqueue_style( 'lightcss', 'https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.5/css/lightslider.min.css'   );
+	}
 
 
 }
@@ -287,3 +293,34 @@ function disable_seo_metabox(){
     remove_meta_box('wpseo_meta', 'page', 'normal');
 }
 
+remove_role( 'adwords_manager' );
+
+add_role('adwords_manager', __('Adwords Manager'),
+    array(
+        'read'              => true, // Allows a user to read
+		'activate_plugins' => true,
+		'create_pages' 		=> true,
+		'publish_pages'   	=> true,
+		'edit_pages'   		=> true,
+		'edit_others_pages' => false,
+		'upload_files' => true,
+		'edit_published_pages' => true,
+		'delete_pages'   	=> true,
+		'delete_published_pages' => true,
+		'frm_view_entries' => true,
+		'frm_view_forms' => true,
+		'frm_edit_forms' => true,
+		'frm_view_entries' => true,
+		'level_8' => true
+        )
+);
+$adwords_manager = get_role('adwords_manager'); $adwords_manager -> add_cap('level_10');
+
+
+ 
+function wpsites_query( $query ) {
+if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
+        $query->set( 'posts_per_page', 200 );
+    }
+}
+add_action( 'pre_get_posts', 'wpsites_query' ); 
