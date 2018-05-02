@@ -40,7 +40,7 @@
 		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
         <span class="locality"><?php the_field('city', 'option'); ?></span>, 
-        <span class="region"><?php the_field('state_or_province', 'option'); ?></span>,
+        <span class="region"><?php the_field('state_or_province', 'option'); ?></span>
         <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
      </div>   
    Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
@@ -51,7 +51,7 @@
 
 	<div id="copyright">
 
-		 <p>&copy; <?php echo date('Y'); ?> <a href="http://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  </p> 	
+		 <p>&copy; <?php echo date('Y'); ?> <a href="https://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  </p> 	
 		<p>Theme Version: <?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?></p>
 		
 		<p style="margin-bottom:0;"><a class="button blue franchise-sales" href="http://www.heavensbest.com/">Franchise Opportunities</a></p>

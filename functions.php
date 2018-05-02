@@ -31,7 +31,7 @@ function blankslate_load_scripts()
 {
  
 	wp_deregister_script('jquery');
-	wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, '1.8.1');
+	wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', false, '1.9.1');
 	wp_enqueue_script('jquery');
 	wp_enqueue_script( 'doubletaptogo', get_stylesheet_directory_uri() . '/doubletaptogo.min.js', array( 'jquery' ) );
 	wp_enqueue_script( 'wallop', 'https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js'  );
@@ -243,10 +243,10 @@ function auto_minimize_forms( $form ) {
 }
 
 // Move Yoast to bottom
+add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
 function yoasttobottom() {
 	return 'low';
 }
-add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
 
 
 /*  Add responsive container to embeds */
@@ -303,6 +303,14 @@ add_role('adwords_manager', __('Adwords Manager'),
 		'publish_pages'   	=> true,
 		'edit_pages'   		=> true,
 		'edit_others_pages' => false,
+		'create_posts' => true,
+		'delete_posts' => true,
+		'delete_published_posts' => true,
+		'edit_posts' => true,
+		'publish_posts' => true,
+		'delete_published_posts	' => true,
+		'edit_published_posts' => true,
+		'edit_others_posts' => true,
 		'upload_files' => true,
 		'edit_published_pages' => true,
 		'delete_pages'   	=> true,

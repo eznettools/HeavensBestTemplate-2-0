@@ -280,8 +280,7 @@ jQuery(document).ready(function( $ ) {
 <?php get_template_part( 'service', 'areas' ); ?>
 
 
-
-
+ 
  </article>
 	
 <?php if ( ! post_password_required() ) comments_template( '', true ); ?>
