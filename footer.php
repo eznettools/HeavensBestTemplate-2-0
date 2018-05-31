@@ -14,6 +14,9 @@
 	</div>
 
 
+ 
+	
+	
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
 	<div class="social-icons">
 	<?php while( have_rows('social_media_icons', 'option') ): the_row();  $title = get_sub_field('social_media_title'); $link = get_sub_field('social_media_link');  ?>
@@ -23,6 +26,8 @@
 	<?php endwhile; ?>
 	</div>
 	<?php endif; ?>
+	
+ 	
 
 	<div class="phone">Call: <?php the_field('phone_number', 'option'); ?></div>
 
@@ -47,7 +52,24 @@
 	<div class="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
 
 </div>
-
+	
+<div itemscope itemtype="http://schema.org/LocalBusiness" style="display:none;">
+	<span itemprop="name"><?php if( get_field('carpet_cleaning_title','option') ): ?>	
+		<?php the_field('carpet_cleaning_title', 'option'); ?>
+	<?php else: ?> 
+		Heaven's Best Carpet Cleaners
+	<?php endif; ?>	<?php the_field('primary_location_name', 'option'); ?>
+	</span>
+	<span itemprop="url"><?php echo get_home_url(); ?></span>
+	<img itemprop="image" src="<?php the_field('logo_url','option'); ?>" />
+	<span itemprop="telephone"><?php the_field('phone_number', 'option'); ?></span>
+	<div itemprop="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
+	<?php if( have_rows('social_media_icons', 'option') ): ?>
+	 <?php while( have_rows('social_media_icons', 'option') ): the_row(); $link = get_sub_field('social_media_link');  ?>
+  		<link itemprop="sameAs" href="<?php echo $link; ?>">
+	 <?php endwhile; ?>
+	<?php endif; ?>
+</div>
 
 	<div id="copyright">
 
