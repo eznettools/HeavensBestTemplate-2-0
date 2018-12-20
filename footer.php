@@ -71,19 +71,17 @@
 	<?php endif; ?>
 </div>
 
-
 	<div id="copyright">
 
-		<a href="//www.dmca.com/Protection/Status.aspx?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+		 <p>&copy; <?php echo date('Y'); ?> <a href="https://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  </p> 	
+		<p>Theme Version: <?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?></p>
 		
-		 <p>&copy; <?php echo date('Y'); ?> <a href="https://www.eznettools.com/">EZ-NetTools Inc</a>. All Rights Reserved.  <br/> 	
-		Theme Version: <?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?></p>
-		
-		<p><a class="button blue franchise-sales" href="http://www.heavensbest.com/">Franchise Opportunities</a></p>
+		<p style="margin-bottom:0;"><a class="button blue franchise-sales" href="http://www.heavensbest.com/">Franchise Opportunities</a></p>
 
 	</div>
 	
- 
+
+
 </footer>
 
 <?php if( get_field('other_custom_code_toggle') ): ?>
