@@ -1,5 +1,8 @@
-<?php /* Template Name: Landing */ ?>
+<?php /* Template Name: Sandwich Landing */ ?>
 <!DOCTYPE html>
+
+
+
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
@@ -7,10 +10,59 @@
 	<?php wp_head(); ?>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" rel="stylesheet">
 	<link href="/wp-content/themes/heavens-best-modern/landing.css" type="text/css" rel="stylesheet" />
+
+<!--<script>
+  function resizeIframe(obj) {
+    obj.style.height = obj.contentWindow.document.body.scrollHeight + 'px';
+  }
+</script>
+-->	
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iframe-resizer/3.6.3/iframeResizer.min.js"></script>
+<script>
+	iFrameResize(
+		{log:true}, '#iframe'
+	)
+	</script>	
+	
+<style>
+.frm_hidden{display:none;}
+.iframe {
+	display:block; 
+	max-width:1300px;
+	width:100%; 
+	margin:auto; 
+	min-height:1100px; 
+	border:none;
+}
+iframe{width:1px; min-width: 100%;}
+.fixed-phone {
+    position: fixed;
+    bottom: 0;
+    right: 16px;
+	background:rgba(5,45,85,.9) ;
+	color:white;
+	border:solid 2px white;
+	border-bottom:none;
+	padding:0.8em;
+}
+.fixed-phone .phone-number {font-size:1.2em; }
+@media (max-width:600px){
+	.fixed-phone { right:0; left:0; text-align:center; }
+}
+</style>
+	
 </head> 
 <body class="<?php the_field('theme'); ?>" >
 
-
+	
+<div class="fixed-phone" >
+	<?php if( get_field('phone_number') ): ?>
+		<p class="phone-number"><b>Call Us:</b> <?php the_field('phone_number'); ?></p>
+	<?php else: ?>
+		<p class="phone-number"><b>Call Us:</b> <?php the_field('phone_number','option'); ?></p>
+	<?php endif; ?>
+</div>
 
 <section class="primary-section" style="<?php if ( has_post_thumbnail() ) : ?>background-image:url(<?php the_post_thumbnail_url( 'full' ); ?>);<?php endif; ?> background-size:cover;  ">
 
@@ -48,6 +100,16 @@
 
 </section>
 
+	
+	
+	
+	
+
+<iframe class="iframe"  scrolling="no" style="" src="<?php the_field('iframe_url'); ?>" ></iframe>
+
+	
+	
+	
 <section class="extra-info">
 
 	<?php the_field('additional_features'); ?>
@@ -57,13 +119,9 @@
 <section class="phone-footer">
 
 	<?php if( get_field('phone_number') ): ?>
-
 		<h2 class="phone-number">Call Us: <?php the_field('phone_number'); ?></h2>
-
 	<?php else: ?>
-
 		<h2 class="phone-number">Call Us: <?php the_field('phone_number','option'); ?></h2>
-
 	<?php endif; ?>
 
 	<?php if( get_field('add_homepage_link') ): ?>
@@ -72,6 +130,11 @@
 
 </section>
 
+	
+
+
+	
+	
 <footer class="address-footer">
 
 	<?php if( get_field('add_address') ): ?>
@@ -98,6 +161,52 @@
 <?php wp_footer(); ?>
  
 
+	
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../js/iframeResizer.min.js"></script>
+	<script type="text/javascript">
+
+		/*
+		 * If you do not understand what the code below does, then please just use the
+		 * following call in your own code.
+		 *
+		 *   iFrameResize({log:true});
+		 *
+		 * Once you have it working, set the log option to false.
+		 */
+
+		iFrameResize({
+			log: true,                  // Enable console logging
+			inPageLinks: true,
+			resizedCallback: function (messageData) { // Callback fn when resize is received
+				$('p#callback').html(
+					'<b>Frame ID:</b> ' + messageData.iframe.id +
+					' <b>Height:</b> ' + messageData.height +
+					' <b>Width:</b> ' + messageData.width +
+					' <b>Event type:</b> ' + messageData.type
+				);
+			},
+			messageCallback: function (messageData) { // Callback fn when message is received
+				$('p#callback').html(
+					'<b>Frame ID:</b> ' + messageData.iframe.id +
+					' <b>Message:</b> ' + messageData.message
+				);
+				alert(messageData.message);
+				document.getElementsByTagName('iframe')[0].iFrameResizer.sendMessage('Hello back from parent page');
+			},
+			closedCallback: function (id) { // Callback fn when iFrame is closed
+				$('p#callback').html(
+					'<b>IFrame (</b>' + id +
+					'<b>) removed from page.</b>'
+				);
+			}
+		});
+
+	</script>
+	
+	
+	
 
 </body>
 </html>
