@@ -331,4 +331,336 @@ if ( $query->is_archive() && $query->is_main_query() && !is_admin() ) {
         $query->set( 'posts_per_page', 200 );
     }
 }
-add_action( 'pre_get_posts', 'wpsites_query' ); 
+add_action( 'pre_get_posts', 'wpsites_query' );
+
+
+/*--- ACF new Landing page stuff ---*/
+if( function_exists('acf_add_local_field_group') ):
+
+acf_add_local_field_group(array(
+	'key' => 'group_593ed9fcb20ce',
+	'title' => 'Landing Pages',
+	'fields' => array(
+		array(
+			'key' => 'field_59430c05d246d',
+			'label' => 'Theme',
+			'name' => 'theme',
+			'type' => 'radio',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'standard' => 'Standard Blue',
+				'spring' => 'Spring',
+				'summer' => 'Summer',
+				'fall' => 'Fall',
+				'christmas' => 'Winter Holiday',
+				'celebration' => 'Celebration Countdown',
+			),
+			'allow_null' => 0,
+			'other_choice' => 0,
+			'save_other_choice' => 0,
+			'default_value' => '',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+		),
+		array(
+			'key' => 'field_593ed9eff3046',
+			'label' => 'Main Title',
+			'name' => 'main_title',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
+		array(
+			'key' => 'field_59403754add86',
+			'label' => 'Type of Content',
+			'name' => 'type_of_content',
+			'type' => 'radio',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'choices' => array(
+				'text' => 'Text',
+				'html' => 'Custom HTML Code',
+			),
+			'allow_null' => 0,
+			'other_choice' => 0,
+			'save_other_choice' => 0,
+			'default_value' => 'text',
+			'layout' => 'horizontal',
+			'return_format' => 'value',
+		),
+		array(
+			'key' => 'field_594306d52486e',
+			'label' => 'Special Icon HTML',
+			'name' => 'special_icon_html',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_59403754add86',
+						'operator' => '==',
+						'value' => 'html',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '<article>
+	<figure><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1497564678/white-icon-stars_bwyyn8.png" /></figure>
+	<h3>Highest Satisfaction</h3>
+	<p>We are insured, licensed, and flexible. Our schedule works with yours. Our professional, well groomed, uniformed employees are verified through extensive background checks.</p>
+	<hr>
+</article>
+
+<article>
+	<figure><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1497564678/white-icon-1-hour_s6i1ar.png" /></figure>
+	<h3>Dry in 1 Hour</h3>
+	<p>Your carpets get cleaner, and dry in less than an hour, and we offer the best value on a budget. That means quality work.</p>
+	<hr>
+</article>
+
+<article>
+	<figure><img src="https://res.cloudinary.com/ez-nettools/image/upload/v1497564678/white-icon-kid-dog_yko18h.png" /></figure>
+	<h3>Family Safe</h3>
+	<p>No harsh chemicals so it\'s safe for kids, pets, and your family. That means Hypoallergenic and Residue Free too! Your family\'s safety in our priority!</p>
+</article>',
+			'placeholder' => '',
+			'maxlength' => '',
+			'rows' => 18,
+			'new_lines' => '',
+		),
+		array(
+			'key' => 'field_594036106af6e',
+			'label' => 'Special Offer Details',
+			'name' => 'special_offer_details',
+			'type' => 'wysiwyg',
+			'instructions' => 'Put information about your specials offer.',
+			'required' => 0,
+			'conditional_logic' => array(
+				array(
+					array(
+						'field' => 'field_59403754add86',
+						'operator' => '==',
+						'value' => 'text',
+					),
+				),
+			),
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '<h2>3 Room Carpet Cleaning for $99</h2>
+<hr />
+</article><article>
+<h3>This Exclusive Deal is Only For a Limited Time!</h3>
+<ul>
+ 	<li>Highest Satisfaction</li>
+ 	<li>Dry in 1 Hour</li>
+ 	<li>Family Safe</li>
+</ul>
+Limited to 600 Sq/Ft up to 3 rooms. Special rates apply for exceeding 600 Sq/Ft limit. $35 for additional rooms. Limitations apply. Call for details.',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+			'delay' => 0,
+		),
+		array(
+			'key' => 'field_59495f91f4b15',
+			'label' => 'Choose Your Form',
+			'name' => 'choose_your_form',
+			'type' => 'wysiwyg',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'tabs' => 'all',
+			'toolbar' => 'full',
+			'media_upload' => 1,
+			'delay' => 0,
+		),
+		array(
+			'key' => 'field_594035d2250ad',
+			'label' => 'Phone Number',
+			'name' => 'phone_number',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+			'maxlength' => '',
+		),
+		array(
+			'key' => 'field_59430d3f80280',
+			'label' => 'Additional Features',
+			'name' => 'additional_features',
+			'type' => 'textarea',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '<h3>Additional Features</h3>
+<ul>
+	<li>Hypoallergenic</li>
+	<li>Residue free</li>
+	<li>Hospital grade disinfectant</li>
+	<li>No harsh chemicals</li>
+</ul>',
+			'placeholder' => '',
+			'maxlength' => '',
+			'rows' => '',
+			'new_lines' => '',
+		),
+		array(
+			'key' => 'field_594947f37776c',
+			'label' => 'Homepage Link (optional)',
+			'name' => 'add_homepage_link',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Add a link under the phone number to the homepage',
+			'default_value' => 0,
+			'ui' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
+		array(
+			'key' => 'field_5949488cd278d',
+			'label' => 'Add Address (optional)',
+			'name' => 'add_address',
+			'type' => 'true_false',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'message' => 'Place your address in the footer',
+			'default_value' => 0,
+			'ui' => 0,
+			'ui_on_text' => '',
+			'ui_off_text' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'page_template',
+				'operator' => '==',
+				'value' => 'template-landing.php',
+			),
+		),
+		array(
+			array(
+				'param' => 'page_template',
+				'operator' => '==',
+				'value' => 'template-sandwich-landing.php',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'acf_after_title',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => array(
+		0 => 'the_content',
+	),
+	'active' => 1,
+	'description' => '',
+));
+
+acf_add_local_field_group(array(
+	'key' => 'group_5c05940af1162',
+	'title' => 'Sandwich Landing Page',
+	'fields' => array(
+		array(
+			'key' => 'field_5c0593dd63855',
+			'label' => 'iframe URL',
+			'name' => 'iframe_url',
+			'type' => 'url',
+			'instructions' => 'The middle part of the	Sandwich Landing Page is an iframe from another source.	Choose the middle part here.',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => 'https://hbcarpetcleaning.com/landing-page-piece',
+			'placeholder' => '',
+		),
+	),
+	'location' => array(
+		array(
+			array(
+				'param' => 'post_template',
+				'operator' => '==',
+				'value' => 'template-sandwich-landing.php',
+			),
+		),
+	),
+	'menu_order' => 0,
+	'position' => 'acf_after_title',
+	'style' => 'default',
+	'label_placement' => 'top',
+	'instruction_placement' => 'label',
+	'hide_on_screen' => '',
+	'active' => 1,
+	'description' => '',
+));
+
+endif;
