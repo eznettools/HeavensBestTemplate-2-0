@@ -3,7 +3,7 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
-	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>" />
+	<link rel="stylesheet" type="text/css" href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>" />
 	<?php wp_head(); ?>
 
 	<?php if( get_field('custom_css_toggle') ): ?>
@@ -21,6 +21,7 @@
 <body <?php body_class(); ?>>
 
 <div id="wrapper" class="mainWrapper hfeed">
+	<a href="#container" class="screen-reader-text visually-hidden focusable skip-link">Skip to main content</a>
 
  <header id="header" class="header" role="banner">
 	

@@ -25,11 +25,11 @@
 				<div class="Wallop Wallop--fade">
 					<ul class="Wallop-list">
 					<?php while( have_rows('slides') ): the_row(); $image = get_sub_field('image'); ?>
-						<li style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></li>
+						<li aria-label="<?php echo $image['alt'] ?>" style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></li>
 					<?php endwhile; ?>
 					</ul>
-	    	<button class="Wallop-buttonPrevious">&lsaquo;</button>
-    		<button class="Wallop-buttonNext">&rsaquo;</button>
+	    	<button aria-label="previous slide" class="Wallop-buttonPrevious">&lsaquo;</button>
+    		<button aria-label="next slide" class="Wallop-buttonNext">&rsaquo;</button>
 				</div>
 			</section>
 			<?php endif; ?>

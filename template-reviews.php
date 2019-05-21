@@ -101,14 +101,18 @@ jQuery(document).ready(function( $ ) {
 
 $('.frm_scale label').css('color','transparent');
 $('.frm_scale input').css('display','none');
+$('#field_rating-5').prop("checked", true);
+$('.frm_scale').addClass('selected');
+	
+$('.frm_scale input').click(updateStars);
 
-$('.frm_scale input').click(function() {
+function updateStars(){
   var Parent = $(this).parent().parent();
   Parent.siblings().removeClass('selected');
   Parent.addClass('selected');
   Parent.prevAll().addClass('selected');
-});
-
+}
+	
 });
 </script>
  

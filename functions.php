@@ -221,15 +221,7 @@ add_action( 'init', 'cptui_register_my_taxes' );
  
 add_editor_style();
 
-
-add_filter( 'nav_menu_link_attributes', 'wpse270596_add_navlink_atts', 10, 3 );
-function wpse270596_add_navlink_atts( $atts, $item, $args ) {
-  if (in_array('menu-item-has-children', $item->classes)) {
-    $atts['data-toggle'] = 'dropdown';
-    $atts['aria-haspopup'] = 'true';
-  }
-return $atts;
-}
+ 
 
 
 
