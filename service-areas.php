@@ -7,6 +7,8 @@
 	<?php wp_nav_menu( array( 'theme_location' => 'service-areas' ) ); ?>
 <?php else: ?> 
 
+	  
+
  
 <ul class="area-list">
     <?php wp_list_categories( array(

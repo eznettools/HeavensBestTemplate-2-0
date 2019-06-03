@@ -20,7 +20,7 @@
 </style>
 
 <main id="content" role="main" class="reviews ">
-
+ 
 <article class="entry-content">
 
  <!--
@@ -82,9 +82,37 @@ jQuery(document).ready(function( $ ) {
 });
 </script>
 
+	<?php the_field('unique_selling_point', 17) ;?>
 
+
+	<?php if( have_rows('featured_services', 17) ): ?>
  
-	<div class="maxwidth">
+	<section id="featured-services" class="featured-services" >
+	  <header class="section-header">
+		<?php the_field('featured_services_title', 17); ?>
+	  </header>
+	  <div class="inner">
+
+	<?php while( have_rows('featured_services', 17) ): the_row(); 
+		$image = get_sub_field('featured_image'); $content = get_sub_field('featured_name'); $link = get_sub_field('featured_link');
+		?>
+		<figure style="background-image:url(<?php echo $image['sizes']['medium']; ?>);   " >
+			<?php if( $link ): ?><a href="<?php echo $link; ?>"><?php endif; ?>
+				<!--<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />-->
+				<figcaption><?php echo $content; ?></figcaption>
+			<?php if( $link ): ?></a><?php endif; ?>
+		</figure>
+	<?php endwhile; ?>
+
+ 	  </div>
+	 <footer class="section-footer"><?php the_field('all_services_button' , 17); ?></footer>
+	</section>
+
+	<?php endif; ?>
+	
+	
+	<div class="maxwidth" style="margin:40px auto;">
+		
 		<?php if( get_field('location_title', $taxonomy . '_' . $term_id) ): ?>
  			<h1><?php the_field('location_title', $taxonomy . '_' . $term_id); ?></h1>
 		<?php else: ?>
@@ -102,10 +130,14 @@ jQuery(document).ready(function( $ ) {
 
 
 
- 
-<section class="review-wrapper">
-<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
+<?php if ( have_posts() ) : ?>
+	
+	<header class="section-header">
+		<h2>What <?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?> Customers are saying:</h2>
+	</header>
+	<section class="review-wrapper">
+	<?php while ( have_posts() ) : the_post(); ?>
 			<div class="h-review">
 			<?php edit_post_link(); ?>
 
@@ -132,8 +164,9 @@ jQuery(document).ready(function( $ ) {
 				</div>				
 				</blockquote>
  			</div>
-<?php endwhile; endif; ?>
-</section>
+	<?php endwhile; ?> 
+	</section>
+<?php endif; ?>
 
 <?php get_template_part( 'nav', 'below' ); ?>
  
@@ -141,9 +174,10 @@ jQuery(document).ready(function( $ ) {
 		Overall Score: <?php echo number_format($average,1); ?> 
 	</div>
  
-<div id="review-form" class="maxwidth review-form">
+<details id="review-form" class="maxwidth review-form">
+	<summary>Write a Review</summary>
 	<?php echo FrmFormsController::get_form_shortcode( array( 'id' => 11, 'title' => false, 'description' => false ) ); ?>
-</div>
+</details>
 <script>
 jQuery(document).ready(function( $ ) {
 

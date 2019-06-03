@@ -5,7 +5,7 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.6.2
+Version: 1.6.5
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: heavens-best-modern
@@ -82,6 +82,16 @@ p { line-height:1.5; }
 
 a { color:#0963b4; }
 
+details {transition: .5s cubic-bezier(.65,.05,.36,1);  overflow:hidden; }
+details:not([open]) { max-height:2.5em; }
+details[open] { max-height: 900px; }
+summary {
+    cursor: pointer;
+    background: #cce8ff;
+    padding: 12px;
+    border-radius: 4px;
+}
+summary:hover { background:#d6f2ff; }
 
 .screen-reader-text { clip:rect(1px, 1px, 1px, 1px); position:absolute;}
 .screen-reader-text:focus { position:static !important; clip:auto; width:auto; height:auto; overflow:visible; border:dotted 2px #aaa; }
@@ -224,6 +234,7 @@ position:fixed; top:-250px; left:0; right:0;
 transition: .4s ease-out;
 z-index:999;
 font-size:80%;
+	display:none;
 }
 .sticky-header .header { background:rgba(255,255,255,.94); box-shadow:0 1px 2px rgba(0,0,0,.25); padding:0; }
 .sticky-header .topnav { padding:0; width:auto;}
@@ -233,7 +244,7 @@ font-size:80%;
 
 @media screen and (min-width:500px) and (min-height:360px) {
 
-	.sticky-header.active {  top:0; }
+	.sticky-header.active {  display:block; top:0; }
 	.admin-bar .sticky-header.active { top:32px; }
 
 }

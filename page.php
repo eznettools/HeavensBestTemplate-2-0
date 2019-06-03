@@ -82,7 +82,7 @@
 
 	<!--<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>-->
 
- <?php the_field('unique_selling_point') ;?>
+ <?php the_field('unique_selling_point' ) ;?>
 	 
 	 
 
