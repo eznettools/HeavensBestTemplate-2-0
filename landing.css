@@ -8,6 +8,7 @@ margin: 0;
 font-family: 'Open Sans', sans-serif;
 }
 
+.frm_hidden, input.frm_hidden{display:none;}
 
 h1, h2, h3 {
 line-height:1.05;

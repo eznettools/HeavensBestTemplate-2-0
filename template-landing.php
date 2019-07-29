@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width" />
 	<?php wp_head(); ?>
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" rel="stylesheet">
-	<link href="/wp-content/themes/heavens-best-modern/landing.css" type="text/css" rel="stylesheet" />
+	<link href="/wp-content/themes/heavens-best-modern/landing.css?v2" type="text/css" rel="stylesheet" />
 </head> 
 <body class="<?php the_field('theme'); ?>" >
 

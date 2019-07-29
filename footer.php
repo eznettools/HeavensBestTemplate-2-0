@@ -61,7 +61,7 @@
 	<?php endif; ?>	<?php the_field('primary_location_name', 'option'); ?>
 	</span>
 	<span itemprop="url"><?php echo get_home_url(); ?></span>
-	<img itemprop="image" src="<?php the_field('logo_url','option'); ?>" />
+	<img itemprop="image" alt=" " src="<?php the_field('logo_url','option'); ?>" />
 	<span itemprop="telephone"><?php the_field('phone_number', 'option'); ?></span>
 	<div itemprop="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
