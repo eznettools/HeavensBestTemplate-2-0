@@ -195,18 +195,19 @@ $('.frm_scale input').click(function() {
 </script>
  
  
-
+<?php if ( have_posts() ) : ?>
 <script type="application/ld+json">
 { "@context": "http://schema.org",
   "@type": "Product",
-  "name": "<?php wp_title(); ?>",
-  "aggregateRating":
+  "name": "<?php wp_title(); ?>"
+  , "aggregateRating":
     {"@type": "AggregateRating",
      "ratingValue": "<?php echo number_format($average,1); ?>",
      "reviewCount": "<?php echo $ratingCount; ?>"
     }
 }
 </script>
+<?php endif; ?>
 
 
 </article>

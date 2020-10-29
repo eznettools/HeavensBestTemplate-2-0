@@ -86,12 +86,14 @@
 <script type="application/ld+json">
 { "@context": "http://schema.org",
   "@type": "Organization",
-  "name": "<?php wp_title(); ?>",
-  "aggregateRating":
+  "name": "<?php wp_title(); ?>"
+<?php if( get_field('show_reviews') ): ?>
+  , "aggregateRating":
     {"@type": "AggregateRating",
      "ratingValue": "<?php echo number_format($average,1); ?>",
      "reviewCount": "<?php echo $ratingCount; ?>"
     }
+<?php endif; ?>
 }
 </script>
 

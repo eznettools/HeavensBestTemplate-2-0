@@ -36,20 +36,18 @@
 		<script>
 		jQuery(document).ready(function( $ ) {
 			var wallopEl = document.querySelector('.Wallop');
-			var wallop = new Wallop(wallopEl);
-			autoplay(5500);
-			function autoplay(interval) {
-			  var lastTime = 0;  
-			  function frame(timestamp) {
-			    var update = timestamp - lastTime >= interval;
-				    if (update) {
-				      wallop.next();
-				      lastTime = timestamp;
-				    }
-			    requestAnimationFrame(frame);
-				  }
-			  requestAnimationFrame(frame);
-			};
+		    var slider = new Wallop(wallopEl);
+		    var autoPlayMs = 4000;
+		    var nextTimeout;
+		    var loadNext = function() {
+				var nextIndex = (slider.currentItemIndex + 1) % slider.allItemsArray.length;
+      			slider.goTo(nextIndex);
+    		}
+    		nextTimeout = setTimeout(function() { loadNext(); }, autoPlayMs);
+    		slider.on('change', function() {
+				clearTimeout(nextTimeout);
+				nextTimeout = setTimeout(function() { loadNext(); }, autoPlayMs);
+			});
 		});
 		</script>
 
@@ -262,12 +260,14 @@ jQuery(document).ready(function( $ ) {
     "addressLocality": "<?php the_field('city', 'option'); ?>",
     "addressRegion": "<?php the_field('state_or_province', 'option'); ?>",
     "postalCode": "<?php the_field('zip_code', 'option'); ?>"
-  },
-  "aggregateRating":
+  }
+<?php if( have_rows('testimonial_repeater') ): ?>
+  , "aggregateRating":
     {"@type": "AggregateRating",
      "ratingValue": "<?php echo number_format($average,1); ?>",
      "reviewCount": "<?php echo $ratingCount; ?>"
     }
+<?php endif; ?>
 }
 </script>
 	 
