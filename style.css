@@ -5,7 +5,7 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.7
+Version: 1.7.1
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: heavens-best-modern
@@ -750,6 +750,20 @@ margin-bottom:-.15em;
 .frm_form_field { margin-bottom:18px; position:relative; vertical-align:top; flex:1 1 100%;}
 
 .frm_hidden {display:none;}
+
+.frm_screen_reader {
+ border: 0;
+ clip: rect(1px, 1px, 1px, 1px);
+ -webkit-clip-path: inset(50%);
+ clip-path: inset(50%);
+ height: 1px;
+ margin: -1px;
+ overflow: hidden;
+ padding: 0;
+ position: absolute;
+ width: 1px;
+ word-wrap: normal !important;
+}
 
 .frm_form_field input, .frm_form_field textarea {
 width:100%;

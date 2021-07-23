@@ -49,7 +49,7 @@
         <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
      </div>   
    Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
-	<div class="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
+	<div class="pricerange"><?php the_field('price_range', 'option'); ?></div>
 
 </div>
 	
@@ -64,6 +64,13 @@
 	<img itemprop="image" alt=" " src="<?php the_field('logo_url','option'); ?>" />
 	<span itemprop="telephone"><?php the_field('phone_number', 'option'); ?></span>
 	<div itemprop="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
+	<div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"> 
+		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
+        <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
+        <span class="locality"><?php the_field('city', 'option'); ?></span>, 
+        <span class="region"><?php the_field('state_or_province', 'option'); ?></span>
+        <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
+     </div> 
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
 	 <?php while( have_rows('social_media_icons', 'option') ): the_row(); $link = get_sub_field('social_media_link');  ?>
   		<link itemprop="sameAs" href="<?php echo $link; ?>">

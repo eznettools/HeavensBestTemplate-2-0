@@ -3,6 +3,12 @@
 <main id="content" role="main">
 
 
+
+	
+	
+	
+	
+
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
@@ -288,5 +294,35 @@ jQuery(document).ready(function( $ ) {
 
 </main>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <?php get_footer(); ?>
