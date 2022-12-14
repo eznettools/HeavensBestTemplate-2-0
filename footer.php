@@ -4,24 +4,22 @@
 </div>
 
 
+<div class="sticky-call-action active">
+	<div class="popup">
+		<?php the_field('sticky_call_to_action', 'option'); ?>
+	</div>
+</div>
+
+
 <footer id="footer" class="footer mainWrapper" role="contentinfo">
 
-
-	<div class="sticky-call-action active">
- 	 <div class="popup">
-		<?php the_field('sticky_call_to_action', 'option'); ?>
-	  </div>
-	</div>
-
-
- 
 	
 	
 	<?php if( have_rows('social_media_icons', 'option') ): ?>
 	<div class="social-icons">
 	<?php while( have_rows('social_media_icons', 'option') ): the_row();  $title = get_sub_field('social_media_title'); $link = get_sub_field('social_media_link');  ?>
 		<a title="<?php echo $title; ?>" href="<?php echo $link; ?>">
-			<img alt="<?php echo $title; ?>" src="<?php the_sub_field('icon', 'option'); ?>">
+			<img loading=lazy width=32 height=32 alt="<?php echo $title; ?>" src="<?php the_sub_field('icon', 'option'); ?>">
 		</a>
 	<?php endwhile; ?>
 	</div>
@@ -81,7 +79,10 @@
 
 	<div id="copyright">
 
-		<a href="//www.dmca.com/Protection/Status.aspx?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+		<a href="//www.dmca.com/Protection/Status.aspx?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277" title="DMCA.com Protection Status" class="dmca-badge"> 
+			<img width=100 height=20 src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277"  alt="DMCA.com Protection Status" />
+		</a>  
+		<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
 		
 		<p>ADA Optimized</p>
 		
@@ -99,32 +100,27 @@
 	<?php the_field('local_code') ?>
 <?php endif; ?>
  
- 
+
 <script>
-jQuery(document).ready(function( $ ) {
-/*--- Sticky Header ---*/
-var $document = $(document),
-    $element = $('.sticky-header '),
-    className = 'active';
-
-$document.scroll(function() {
-  if ($document.scrollTop() >= 80) {
-    $element.addClass(className);
-  } else {
-    $element.removeClass(className);
-  }
-});
-
-var len = $('script[src*="Javascript/MyScript.js"]').length; 
-
 	
-/*--- Mobile Dropdown fix ---*/
-
-$('.topnav li:has(ul)' ).doubleTapToGo();
-
-});
-
+/*--- Sticky Header ----*/
+window.addEventListener('scroll', getScrollPos);
+const stickyHeader = document.querySelector('.sticky-header');	
+	
+function getScrollPos() {
+	scrollPos =  document.body.getBoundingClientRect().top * -1 ; 
+	if( scrollPos >= 80 ) {
+		stickyHeader.classList.add('active');
+	} else {
+		stickyHeader.classList.remove('active');
+	}
+}
 </script>
+	
+
+
+
+
  
 </div>
 

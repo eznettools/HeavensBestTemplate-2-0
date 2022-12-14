@@ -3,59 +3,47 @@
 <main id="content" role="main">
 
 
-
-	
-	
-	
 	
 
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
 <?php if( is_page('Home') ): ?>
+	 
+	
+	
+	
+	 
 <section class="banner">
 		<?php if( get_field('banner_type') == 'video' ): ?>
 			<video muted autoplay <?php if( get_field('loop') ): ?>loop<?php endif; ?> playsinline>
 				<source src="<?php the_field('video_url'); ?>" type="video/mp4">
 			</video>
 		<?php elseif( get_field('banner_type') == 'image' ): ?>
-
 			<?php $image = get_field('banner_image'); $size = 'large'; ?>
-			<div style="background-image:url(<?php echo wp_get_attachment_image_url( $image, $size ); ?>);" class="image-box "></div> 
+			<div class="image-box ">
+				<?php echo wp_get_attachment_image( $image, $size, false, array( "loading" => "eager" )  ); ?>
+			</div> 
 
 		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
-			<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/js/Wallop.js"></script>-->
-			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/wallop/2.4.1/css/wallop--fade.min.css" />
-			<?php if( have_rows('slides') ): ?>
-			<section class="slideshow">
-				<div class="Wallop Wallop--fade">
-					<ul class="Wallop-list">
+			<!-- Find Slideshow documentation at https://swiffyslider.com/docs -->
+			<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+			<?php if( have_rows('slides') ): $count = 1; ?>
+			<section class="swiffy-slider slider-nav-autoplay" data-slider-nav-autoplay-interval="4500">
+					<ul class="slider-container">
 					<?php while( have_rows('slides') ): the_row(); $image = get_sub_field('image'); ?>
-						<li aria-label="<?php echo $image['alt'] ?>" style="background-image:url(<?php echo $image['sizes']['large']; ?>);" class="image-box slide Wallop-item"></li>
+						<li aria-label="<?php echo $image['alt'] ?>" >
+						<img width="<?php echo $image['width']; ?>" height="<?php echo $image['height']; ?>" src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt'] ?>" 
+							<?php if( $count > 1 ) { echo ' loading=lazy decoding="async" '; } ?>  >
+						</li>
+						<?php $count++; ?>
 					<?php endwhile; ?>
 					</ul>
-	    	<button aria-label="previous slide" class="Wallop-buttonPrevious">&lsaquo;</button>
-    		<button aria-label="next slide" class="Wallop-buttonNext">&rsaquo;</button>
-				</div>
+	    	<button type="button" class="slider-nav"></button>
+    		<button type="button" class="slider-nav slider-nav-next"></button>
 			</section>
 			<?php endif; ?>
-		<script>
-		jQuery(document).ready(function( $ ) {
-			var wallopEl = document.querySelector('.Wallop');
-		    var slider = new Wallop(wallopEl);
-		    var autoPlayMs = 4000;
-		    var nextTimeout;
-		    var loadNext = function() {
-				var nextIndex = (slider.currentItemIndex + 1) % slider.allItemsArray.length;
-      			slider.goTo(nextIndex);
-    		}
-    		nextTimeout = setTimeout(function() { loadNext(); }, autoPlayMs);
-    		slider.on('change', function() {
-				clearTimeout(nextTimeout);
-				nextTimeout = setTimeout(function() { loadNext(); }, autoPlayMs);
-			});
-		});
-		</script>
+
 
 		<?php else: ?> <!-- Fallback so old templates don't get broken in update -->
 			<?php if( get_field('video_background') ): ?>
@@ -79,7 +67,7 @@
 		</div>
 		<?php endif; ?>
 	
-		<img alt=" " class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1521040505/clouds6_w73ygm.png" />
+		<img alt=" " class="clouds" src="https://res.cloudinary.com/ez-nettools/image/upload/v1670868099/clouds_vector3_kt5cak.svg" />
 </section>
 <?php endif; ?>
 
@@ -90,8 +78,10 @@
 	 
 	 
 
+	 
+	 
+	 
 	<?php if( have_rows('featured_services') ): ?>
- 
 	<section id="featured-services" class="featured-services">
 	  <header class="section-header">
 		<?php the_field('featured_services_title'); ?>
@@ -101,9 +91,9 @@
 	<?php while( have_rows('featured_services') ): the_row(); 
 		$image = get_sub_field('featured_image'); $content = get_sub_field('featured_name'); $link = get_sub_field('featured_link');
 		?>
-		<figure style="background-image:url(<?php echo $image['sizes']['medium']; ?>);   " >
+		<figure  >
 			<?php if( $link ): ?><a href="<?php echo $link; ?>"><?php endif; ?>
-				<!--<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />-->
+				<img loading=lazy decoding="async" src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />
 				<figcaption><?php echo $content; ?></figcaption>
 			<?php if( $link ): ?></a><?php endif; ?>
 		</figure>
@@ -157,7 +147,7 @@
 
 <?php $post_objects = get_field('special_deal_post');
 if( $post_objects ): ?>
-	<div class="inner">
+	<div class="coupon-collection">
 
     <?php foreach( $post_objects as $post): // variable must be called $post (IMPORTANT) ?>
         <?php setup_postdata($post); ?>
@@ -168,7 +158,7 @@ if( $post_objects ): ?>
     <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
 
 	<?php if( get_field('full_size_all_specials') ): ?>
-	<a class="coupon see-all show" href="/deal/">
+	<a class=" see-all show" href="/deal/">
 		<div class="shine"></div>
 		<h4><?php the_field('all_specials_tile_text'); ?></h4>
 	</a>
@@ -182,37 +172,36 @@ if( $post_objects ): ?>
 	<?php endif; ?>
 
 <?php if( get_field('3d_hover_effect') ): /*-- 3D effect javascript--*/  ?>
-<style>
-.coupon:hover { transform:scale(1.015); }
-</style>
+
+
 <script>
-jQuery(document).ready(function( $ ) {
-(function() {
-   $( document )
-    .on( "mousemove touchstart touchmove", ".coupon", function( event ) {
-    var halfW = ( this.clientWidth / 2 );
-    var halfH = ( this.clientHeight / 2 );
-    var coorX = ( halfW - ( event.pageX - this.offsetLeft ) );
-    var coorY = ( halfH - ( event.pageY - this.offsetTop ) );
-    var degX  = ( ( coorY / halfH ) * 5 ) + 'deg'; // max. degree = 10
-    var degY  = ( ( coorX / halfW ) * -5 ) + 'deg'; // max. degree = 10
-    var opacity = Math.abs(coorY *.0037)
-     
-    $(this).children('.shine').css('background','radial-gradient(circle at ' + coorX + '%' + coorY + '%, rgba(255,255,255,' + opacity + ') 1%, rgba(255,255,255,0) 75% )');
+addEventListener('DOMContentLoaded', e => {
+	
 
-    $(this).css({'transition':'none', 'zIndex':'50'})
-
-    $( this ).css( 'transform', function() {
-      return 'perspective( 1200px ) translate3d( 0, -2px, 0 ) scale(1.03)  rotateX('+ degX +') rotateY('+ degY +')';           
-    } )
-  } )
-    .on( "mouseout touchend", ".coupon", function() {
-    $( this ).removeAttr( 'style' );
-     $(this).children().removeAttr( 'style' );
-  } );
-})();
-});
+ const couponWrapper = document.querySelector('#coupons');
+ const coupons = couponWrapper.querySelectorAll('.coupon');
+	
+ coupons.forEach( coupon => {
+	couponWidth = Math.floor( coupon.getBoundingClientRect().width );
+	coupon.style.setProperty('--width', couponWidth );
+	couponHeight = Math.floor( coupon.getBoundingClientRect().height );
+	coupon.style.setProperty('--height', couponHeight );
+	coupon.addEventListener('mousemove', e => {
+		coupon.style.setProperty('--mouseX', e.clientX - coupon.getBoundingClientRect().left );
+		coupon.style.setProperty('--mouseY', e.clientY - coupon.getBoundingClientRect().top );
+		e.cancelBubble = true;
+	})
+	coupon.addEventListener('mouseenter', e => {
+		coupon.classList.add('is_hovered');
+	});
+	
+	coupon.addEventListener('pointerleave', e => {
+		coupon.classList.remove('is_hovered');
+	})
+ })
+})
 </script>
+		
 <?php endif; ?>
 
 	</section>
@@ -220,7 +209,9 @@ jQuery(document).ready(function( $ ) {
 
 <?php endif;?>
 
+	 
 <?php if( have_rows('testimonial_repeater') ): ?>
+<?php $ratingTotal = 0; $ratingCount = 0; ?>
 <section class="review-wrapper">
 	<?php while( have_rows('testimonial_repeater') ): the_row();  $review = get_sub_field('review'); $cite = get_sub_field('cite'); $date = get_sub_field('date');  ?>
 		<div class="h-review">
@@ -246,13 +237,16 @@ jQuery(document).ready(function( $ ) {
  		</div>
 	<?php endwhile; ?>
 </section>
+
+	<?php if( current_user_can('administrator') and $average ):  ?> 
+		<div style="text-align:center; font-size:.75em; padding:6px 0; color:#666;">
+			  Average Rating: <?php echo number_format($average,1); ?> 
+		</div>
+	<?php endif; ?>
+
 <?php endif; ?>
 	 
-<?php if( current_user_can('administrator') and $average ):  ?> 
-	<div style="text-align:center; font-size:.75em; padding:6px 0; color:#666;">
-		  Average Rating: <?php echo number_format($average,1); ?> 
-	</div>
-<?php endif; ?>
+
 <script type="application/ld+json">
 { "@context": "http://schema.org",
   "@type": "localbusiness",
@@ -294,24 +288,6 @@ jQuery(document).ready(function( $ ) {
 
 </main>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

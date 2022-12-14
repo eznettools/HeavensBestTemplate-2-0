@@ -10,7 +10,7 @@
 
 
 	<section id="coupons" class="coupons">
-	  <div class="inner">
+	  <div class="coupon-collection">
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
  

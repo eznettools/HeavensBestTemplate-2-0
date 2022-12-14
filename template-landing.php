@@ -4,11 +4,40 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
+
+	<link rel="preload" as="image" href="<?php the_post_thumbnail_url( 'full' ); ?>" />
+	<?php $theme = get_field('theme'); ?>
+	<?php if ($theme == 'fall') { echo '<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/f_auto/fall-background_jikenu_e7cmgx.avif" />'; }  ?>
+	<?php if ($theme == 'christmas') { echo '<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/f_auto/holiday-background_hotef6_tuzskh.webp" />'; }  ?>
+	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/f_auto/carpet_cleaning_3_hqdrov.avif" />
+	<link rel="preload" as="image" href="<?php the_field('logo_url','option'); ?>"  />
 	<?php wp_head(); ?>
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700" rel="stylesheet">
-	<link href="/wp-content/themes/heavens-best-modern/landing.css?v2" type="text/css" rel="stylesheet" />
+	<!-- <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">-->
+	<style>
+/* latin italic */
+@font-face {
+  font-family: 'Asap';
+  font-style: italic;
+  font-weight: 100 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/asap/v26/KFO7CniXp96ayz4E7kSn66aGLdTylUAMa3yUBA.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin normal */
+@font-face {
+  font-family: 'Asap';
+  font-style: normal;
+  font-weight: 100 900;
+  font-stretch: 100%;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/asap/v26/KFO9CniXp96a4Tc2DaTeuDAoKsE615hJW34.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+	<link href="/wp-content/themes/heavens-best-modern/landing.css?v2.0" type="text/css" rel="stylesheet" />
 </head> 
-<body class="<?php the_field('theme'); ?>" >
+<body class="<?php echo $theme; ?>" >
 
 
 
@@ -35,7 +64,7 @@
  
 
 		<div class="form-wrapper">
-			<div class="form-logo"><img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>" /></div>
+			<div class="form-logo"><img width=280 height=280 alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>" /></div>
 			<?php if( get_field('choose_your_form') ): ?>
 				<?php the_field('choose_your_form');    ?>
 			<?php else: ?>

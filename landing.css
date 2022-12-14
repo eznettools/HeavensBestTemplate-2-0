@@ -6,6 +6,7 @@ background:#0d509e;
 color:white;
 margin: 0;
 font-family: 'Open Sans', sans-serif;
+font-family: 'Asap', sans-serif;
 }
 
 .frm_hidden, input.frm_hidden{display:none;}
@@ -24,7 +25,7 @@ a {color:#fff;}
 
 img {max-width:100%; height:auto;}
 
-small {display:block;}
+h1 small {display:block;}
 
 hr {
 border: none;
@@ -33,7 +34,7 @@ margin: 2em auto;
 }
 
 .primary-section {
-background-image: url(https://res.cloudinary.com/ez-nettools/image/upload/v1497975874/carpet-cleaning-background_xgb2bj.jpg);
+background-image: url(https://res.cloudinary.com/ez-nettools/image/upload/f_auto/carpet_cleaning_3_hqdrov.avif);
 background-position:center;
 animation: 14s Zoom alternate infinite both cubic-bezier(.39,.58,.57,1);
 overflow:hidden;
@@ -218,7 +219,7 @@ border-radius:6px;
 /*````````````````````````````` Additional Themes ````````````````````````````````*/
 
 /*=========== Fall Theme ===============*/
-.fall .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497975507/fall-background_jikenu.jpg); text-shadow:1px 1px 1px #920; background-color:#e07b0f; }
+.fall .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/f_auto/fall-background_jikenu_e7cmgx.avif); text-shadow:1px 1px 1px #920; background-color:#e07b0f; }
 
 .fall .form-wrapper { color:#b14a3d; text-shadow:none;}
 
@@ -229,7 +230,7 @@ border-radius:6px;
 
 /*======= Winter Holiday (Christmas) Theme ========*/
 
-.christmas .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/v1497641852/holiday-background_hotef6.jpg); background-color:#fff6e5; color:#a20606; 
+.christmas .primary-section { background-image:url(https://res.cloudinary.com/ez-nettools/image/upload/f_auto/holiday-background_hotef6_tuzskh.webp); background-color:#fff6e5; color:#a20606; 
  text-shadow:-1px -1px #fff; }
 
 .christmas .landing-header { color:#c51616; text-shadow:1px 1px 6px rgba(255,255,255,.9); }

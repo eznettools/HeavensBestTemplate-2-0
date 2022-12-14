@@ -3,6 +3,7 @@
 <?php get_header(); ?>
 
 
+
 <section id="content" role="main">
 <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
@@ -18,17 +19,15 @@
 	</header>
 </div>
 
-
 <?php if( have_rows('flexible_content_areas') ):
     while ( have_rows('flexible_content_areas') ) : the_row();
 
         if( get_row_layout() == 'add_checkbox_block' ): ?>
 
 				<section class="checkbox-list <?php the_sub_field('custom_classes'); ?>" <?php the_sub_field('other_attributes'); ?> >
-
-					<?php if( get_sub_field('custom_background_image') ): ?>
+					<?php if( get_sub_field('extra_options') ): ?>
 						<?php $image = get_sub_field('custom_background_image'); ?>
-						<div class="banner-image lowres" style="background-image:url(<?php echo wp_get_attachment_image_url( $image, 'medium' ); ?>); background-size:cover;"></div>
+						<div class="banner-image lowres" style="background-image:url(<?php echo wp_get_attachment_image_url( $image, 'small' ); ?>); background-size:cover;"></div>
 					<?php else: ?>
 						<div class="banner-image lowres" style="background-image:url(<?php the_post_thumbnail_url( 'small' ); ?>); background-size:cover;"></div>
 					<?php endif; ?>
@@ -38,7 +37,7 @@
 	    	    	<?php if( have_rows('checkbox_repeater') ): ?>
 						<?php while ( have_rows('checkbox_repeater') ) : the_row(); ?>
 
-						<p><img class="checkmark" src="https://res.cloudinary.com/ez-nettools/image/upload/v1502741204/checkmark_quqbos.png" alt="&#x2714;" />
+						<p><svg width=30 height=24 viewBox="0 0 429.77 342.67"><title>✔</title></title><defs><style>.cls-1{fill:none;stroke:#8cdb5c;stroke-width:90px;}</style></defs><polyline class="cls-1" points="31.96 156.48 153.14 278.73 397.8 31.66"/></svg>
 					  	<?php the_sub_field('check_item'); ?></p>
 
 					<?php endwhile; ?>
@@ -108,10 +107,12 @@ if ( ! empty($child_pages) ) {
   foreach ( $child_pages as $post ) { setup_postdata( $post ); ?>
 	<?php $image_id = get_post_thumbnail_id(); $image_url = wp_get_attachment_image_src($image_id,'medium', true);  ?>
 
-	<figure style=background-image:url(<?php echo $image_url[0]; ?>);"  title="<?php the_title_attribute(); ?>">
+	<figure  title="<?php the_title_attribute(); ?>">
+		
 	<a id="post-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" class="post summary <?php echo get_post_type(); ?> <?php if( get_field('unfinished') ): ?> unfinished <?php endif; ?>">
 
 	<?php if ( has_post_thumbnail() ): ?>
+		<img loading=lazy decoding="async" src="<?php echo $image_url[0]; ?>" alt=" &nbsp; " />
 	<?php else: ?>
 	<?php endif; ?>
  
@@ -149,5 +150,20 @@ if ( ! empty($child_pages) ) {
 </section>
 
 </div>
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
+					 
   
 <?php get_footer(); ?>

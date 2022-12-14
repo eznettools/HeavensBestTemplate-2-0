@@ -49,9 +49,9 @@
 
 	
 <section id="slideshow">
-	<?php if( get_field('slideshow' , options) ): ?>
+	<?php if( get_field('slideshow' , 'option') ): ?>
 		<ul>
-		<?php while( have_rows('slideshow', options) ): the_row(); $image = get_sub_field('image'); ?>
+		<?php while( have_rows('slideshow', 'option') ): the_row(); $image = get_sub_field('image'); ?>
 			<li><img alt=" " src="<?php echo $image; ?>" /></li>
 		<?php endwhile; ?>
 		</ul>
@@ -98,7 +98,7 @@ jQuery(document).ready(function( $ ) {
 		?>
 		<figure style="background-image:url(<?php echo $image['sizes']['medium']; ?>);   " >
 			<?php if( $link ): ?><a href="<?php echo $link; ?>"><?php endif; ?>
-				<!--<img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />-->
+				<img width=<?php echo $image['width']; ?>  height=<?php echo $image['height']; ?> src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" loading=lazy />
 				<figcaption><?php echo $content; ?></figcaption>
 			<?php if( $link ): ?></a><?php endif; ?>
 		</figure>
@@ -132,7 +132,7 @@ jQuery(document).ready(function( $ ) {
 
 
 <?php if ( have_posts() ) : ?>
-	
+	<?php $ratingTotal = 0; $ratingCount = 0; ?>
 	<header class="section-header">
 		<h2>What <?php single_term_title(); ?> <?php the_field('state_or_province','option'); ?> Customers are saying:</h2>
 	</header>
@@ -166,13 +166,15 @@ jQuery(document).ready(function( $ ) {
  			</div>
 	<?php endwhile; ?> 
 	</section>
+	
+	<div style="text-align:right; font-size:.8em; padding:6px 0; color:#888;">
+		Overall Score: <?php echo number_format($average,1); ?> 
+	</div>
 <?php endif; ?>
 
 <?php get_template_part( 'nav', 'below' ); ?>
  
-	<div style="text-align:right; font-size:.8em; padding:6px 0; color:#888;">
-		Overall Score: <?php echo number_format($average,1); ?> 
-	</div>
+
  
 <details id="review-form" class="maxwidth review-form">
 	<summary>Write a Review</summary>
