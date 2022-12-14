@@ -8,7 +8,8 @@
 	<link rel="preload" as="image" href="<?php echo $logoUrl; ?>" >
 	<?php if( get_field('banner_type') == 'slideshow' ): $repeater = get_field('slides'); $first_img = $repeater[0]['image']['url']; ?>
 	  <link rel="preload" as="image" href="<?php echo $first_img; ?>"  crossorigin="anonymous">
-	  <link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+	  <link rel="stylesheet" type="text/css" href="/wp-content/themes/heavens-best-modern/swiffy-slider.css">
+	<script src="/wp-content/themes/heavens-best-modern/swiffy-slider.min.js" defer></script>
 	<?php endif; ?>
 	<?php if( get_field('banner_type') == 'image' ): $image = get_field('banner_image'); $size = 'large'; ?>
 	  <link rel="preload" as="image" href="<?php echo wp_get_attachment_image_url( $image, $size ); ?>">
@@ -25,7 +26,12 @@
 	
 	
 	<link rel="stylesheet" type="text/css"  href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>" />
-	
+
+<!--
+<link rel="preload" href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>"  as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>"  as="style" onload="this.onload=null;this.rel='stylesheet'"></noscript>
+-->	
+
 	<!-- WP_header -->
 	<?php wp_head(); ?>
 	<!-- end WP Head -->
@@ -37,12 +43,14 @@
 	</style>
 	<?php endif; ?>
 	
+<!--
 <script>
 jQuery(document).ready(function( $ ) {
 	$('.topnav li:has(ul)' ).doubleTapToGo();
 });
 </script>
-	
+-->	
+
 <style>
 /* latin italic */
 @font-face {
@@ -78,7 +86,6 @@ jQuery(document).ready(function( $ ) {
 
  <header id="header" class="header" role="banner">
 	
-	 <?php $logoUrl = get_field('logo_url','option'); $logoSize = getimagesize($logoUrl); ?>
  	<a href="/" class="logo"><img alt="Heaven's Best" src="<?php echo $logoUrl; ?>" width=<?php echo $logoSize[0]; ?> height=<?php echo $logoSize[1]; ?> /></a>
 
 	<aside class="header-aside">

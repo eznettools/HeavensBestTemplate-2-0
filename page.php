@@ -27,9 +27,8 @@
 
 		<?php elseif( get_field('banner_type') == 'slideshow' ): ?>
 			<!-- Find Slideshow documentation at https://swiffyslider.com/docs -->
-			<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
 			<?php if( have_rows('slides') ): $count = 1; ?>
-			<section class="swiffy-slider slider-nav-autoplay" data-slider-nav-autoplay-interval="4500">
+			<section class="swiffy-slider slider-nav-autoplay slider-item-nogap" data-slider-nav-autoplay-interval="4500">
 					<ul class="slider-container">
 					<?php while( have_rows('slides') ): the_row(); $image = get_sub_field('image'); ?>
 						<li aria-label="<?php echo $image['alt'] ?>" >
