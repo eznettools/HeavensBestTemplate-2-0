@@ -8,7 +8,7 @@
 	<link rel="preload" as="image" href="<?php echo $logoUrl; ?>" >
 	<?php if( get_field('banner_type') == 'slideshow' ): $repeater = get_field('slides'); $first_img = $repeater[0]['image']['url']; ?>
 	  <link rel="preload" as="image" href="<?php echo $first_img; ?>"  crossorigin="anonymous">
-	  <link rel="stylesheet" type="text/css" href="/wp-content/themes/heavens-best-modern/swiffy-slider.css">
+	  <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/swiffy-slider.css?">
 	<script src="/wp-content/themes/heavens-best-modern/swiffy-slider.min.js" defer></script>
 	<?php endif; ?>
 	<?php if( get_field('banner_type') == 'image' ): $image = get_field('banner_image'); $size = 'large'; ?>

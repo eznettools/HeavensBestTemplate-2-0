@@ -4,7 +4,7 @@
 
 	<header class="header">
 		<h1 class="entry-title">
-			<?php _e( 'Tag Archives: ', 'blankslate' ); ?><?php single_tag_title(); ?>
+			<?php _e( 'Tag Archives: ', 'heavens-best-modern' ); ?><?php single_tag_title(); ?>
 		</h1>
 	</header>
 	
