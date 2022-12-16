@@ -4,12 +4,13 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
 	
+	<?php $templateUrl = get_template_directory_uri(); ?>
 	<?php $logoUrl = get_field('logo_url','option'); $logoSize = getimagesize($logoUrl); ?>
 	<link rel="preload" as="image" href="<?php echo $logoUrl; ?>" >
 	<?php if( get_field('banner_type') == 'slideshow' ): $repeater = get_field('slides'); $first_img = $repeater[0]['image']['url']; ?>
 	  <link rel="preload" as="image" href="<?php echo $first_img; ?>"  crossorigin="anonymous">
-	  <link rel="stylesheet" type="text/css" href="<?php echo get_template_directory_uri(); ?>/swiffy-slider.css?">
-	<script src="/wp-content/themes/heavens-best-modern/swiffy-slider.min.js" defer></script>
+	  <link rel="stylesheet" type="text/css" href="<?php echo $templateUrl; ?>/swiffy-slider.css?">
+	<script src="<?php echo $templateUrl; ?>/swiffy-slider.min.js?123" defer></script>
 	<?php endif; ?>
 	<?php if( get_field('banner_type') == 'image' ): $image = get_field('banner_image'); $size = 'large'; ?>
 	  <link rel="preload" as="image" href="<?php echo wp_get_attachment_image_url( $image, $size ); ?>">
