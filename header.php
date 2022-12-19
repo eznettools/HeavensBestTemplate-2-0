@@ -4,11 +4,17 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>" />
 	<meta name="viewport" content="width=device-width" />
 	
+	
+	<?php $my_theme = wp_get_theme(); $stylesUrl =  get_stylesheet_uri() . '?v='. esc_html( $my_theme->get( 'Version' ) );	?>
+	<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>?v=<?php echo $stylesUrl; ?>">
+	
+	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/v1670453572/DryBanner7_dsvyi6.svg">
+	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/v1670455014/Phone_Icon_ay4o9j.svg">
 	<?php $templateUrl = get_template_directory_uri(); ?>
 	<?php $logoUrl = get_field('logo_url','option'); $logoSize = getimagesize($logoUrl); ?>
 	<link rel="preload" as="image" href="<?php echo $logoUrl; ?>" >
 	<?php if( get_field('banner_type') == 'slideshow' ): $repeater = get_field('slides'); $first_img = $repeater[0]['image']['url']; ?>
-	  <link rel="preload" as="image" href="<?php echo $first_img; ?>"  crossorigin="anonymous">
+	  <!--<link rel="preload" as="image" href="<?php echo $first_img; ?>"  crossorigin="anonymous">-->
 	  <link rel="stylesheet" type="text/css" href="<?php echo $templateUrl; ?>/swiffy-slider.css?">
 	<script src="<?php echo $templateUrl; ?>/swiffy-slider.min.js?123" defer></script>
 	<?php endif; ?>
@@ -19,19 +25,14 @@
 	  <link rel="preload" as="video" type="video/mp4" href="<?php the_field('video_url'); ?>">
 	<?php endif; ?>		
 	<?php if( has_post_thumbnail() ): ?><link rel="preload" as="image" href="<?php the_post_thumbnail_url( 'full' ); ?>" /><?php endif; ?>
-	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/v1670453572/DryBanner7_dsvyi6.svg">
-	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/v1670455014/Phone_Icon_ay4o9j.svg">
+
 	<link rel="preload" as="image" href="https://res.cloudinary.com/ez-nettools/image/upload/v1670868099/clouds_vector3_kt5cak.svg">
 	
 
 	
-	
-	<link rel="stylesheet" type="text/css"  href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>" />
+<!--<link rel="preload" href="<?php echo $stylesUrl; ?>"  as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>?v=<?php echo $stylesUrl; ?>"></noscript>-->
 
-<!--
-<link rel="preload" href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>"  as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>?v=<?php $my_theme = wp_get_theme(); echo esc_html( $my_theme->get( 'Version' ) ); ?>"  as="style" onload="this.onload=null;this.rel='stylesheet'"></noscript>
--->	
 
 	<!-- WP_header -->
 	<?php wp_head(); ?>
@@ -44,13 +45,12 @@
 	</style>
 	<?php endif; ?>
 	
-<!--
+
 <script>
 jQuery(document).ready(function( $ ) {
 	$('.topnav li:has(ul)' ).doubleTapToGo();
 });
 </script>
--->	
 
 <style>
 /* latin italic */
@@ -81,6 +81,7 @@ jQuery(document).ready(function( $ ) {
 
 
 <body <?php body_class(); ?>>
+ <?php wp_body_open(); ?>
 
 <div id="wrapper" class="mainWrapper hfeed">
 	<a href="#container" class="screen-reader-text visually-hidden focusable skip-link">Skip to main content</a>
@@ -97,11 +98,12 @@ jQuery(document).ready(function( $ ) {
 		</div>
 
 		<div class="phone">
+			<?php $phoneNumber = get_field('phone_number', 'option'); ?>
 			<?php if( get_field('override_phone_number_in_header','option') ): ?>
 					<?php the_field('manual_phone_number_html','option'); ?>
 			<?php else: ?>
 				<img alt=" " class="phone-icon" width=32 height=32 src="https://res.cloudinary.com/ez-nettools/image/upload/v1670455014/Phone_Icon_ay4o9j.svg" />
-				<?php the_field('phone_number', 'option'); ?>
+				<?php echo $phoneNumber; ?>
 			<?php endif; ?>
 		</div>
 	</aside>
@@ -122,7 +124,7 @@ jQuery(document).ready(function( $ ) {
 	</nav>
 
 	<aside class="header-aside">
-		<div class="phone"><?php the_field('phone_number', 'option'); ?></div>
+		<div class="phone"><?php echo $phoneNumber; ?></div>
 	</aside>
     </div>
  </header>

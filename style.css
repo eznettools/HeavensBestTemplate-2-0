@@ -5,10 +5,13 @@ Author: EZ-NetTools (Steve Monson)
 Author URI: http://eznettools.com/
 Github Theme URI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 Description: A specialized theme made just for Heaven's Best operators 
-Version: 1.8.4
+Version: 1.8.6
+Tested up to: 8.0.1.9
+Requires PHP: 5.4
 License: GNU General Public License
 License URI: https://www.gnu.org/licenses/gpl.html
 Text Domain: heavens-best-modern
+UpdateURI: https://github.com/stevenmonson/HeavensBestTemplate-2-0
 */
 
 body {
@@ -445,7 +448,7 @@ font-size:190%;
 
 /*------------ Unique Selling Point Icons (USP) --------------*/
 
-.usp-icons { display:flex; max-width:980px; margin:2.5% auto 1.25%; justify-content:center; contain: inline-size; }
+.usp-icons { display:flex; max-width:980px; margin:2.5% auto 1.25%; justify-content:center; contain: inline-size; content-visibility: auto; }
 
 .usp-icons figure { 
 	text-align:center; 
@@ -481,7 +484,7 @@ font-size:190%;
 }
 
 /*----------------------------------- Featured Services ---------------------------------------------*/
-.featured-services {margin:5px;}
+.featured-services {margin:5px; contain: inline-size; content-visibility: auto; }
 
 .featured-services .inner {
 display:flex;

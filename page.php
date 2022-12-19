@@ -3,15 +3,10 @@
 <main id="content" role="main">
 
 
-	
-
  <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
 <?php if( is_page('Home') ): ?>
-	 
-	
-	
 	
 	 
 <section class="banner">
@@ -71,14 +66,10 @@
 <?php endif; ?>
 
 
-	<!--<a class="primary button mobile-only" href="<?php the_field('button_link'); ?>"><?php the_field('button_text'); ?></a>-->
 
- <?php the_field('unique_selling_point' ) ;?>
-	 
+	<?php the_field('unique_selling_point' ) ;?>
 	 
 
-	 
-	 
 	 
 	<?php if( have_rows('featured_services') ): ?>
 	<section id="featured-services" class="featured-services">
@@ -90,7 +81,7 @@
 	<?php while( have_rows('featured_services') ): the_row(); 
 		$image = get_sub_field('featured_image'); $content = get_sub_field('featured_name'); $link = get_sub_field('featured_link');
 		?>
-		<figure  >
+		<figure>
 			<?php if( $link ): ?><a href="<?php echo $link; ?>"><?php endif; ?>
 				<img loading=lazy decoding="async" src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt'] ?>" />
 				<figcaption><?php echo $content; ?></figcaption>
@@ -120,7 +111,6 @@
 
 
 
-<!--<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>-->
 
 <?php if( '' !== get_post()->post_content ): ?>
 
@@ -132,7 +122,6 @@
 
 <?php endif; ?>
 
-<!--<?php endwhile; endif; ?>-->
 
 
 <?php if( get_field('include_coupons_on_homepage') and get_field('special_deal_post') ): ?>
@@ -142,7 +131,6 @@
 		</header>
 
 <!-- ========= Special Deal Coupons ========== -->
-
 
 <?php $post_objects = get_field('special_deal_post');
 if( $post_objects ): ?>
@@ -171,7 +159,6 @@ if( $post_objects ): ?>
 	<?php endif; ?>
 
 <?php if( get_field('3d_hover_effect') ): /*-- 3D effect javascript--*/  ?>
-
 
 <script>
 addEventListener('DOMContentLoaded', e => {
@@ -269,8 +256,6 @@ addEventListener('DOMContentLoaded', e => {
 <?php endif; ?>
 }
 </script>
-	 
- 
  
 
 <?php get_template_part( 'google', 'review' ); ?>
@@ -287,14 +272,6 @@ addEventListener('DOMContentLoaded', e => {
 
 </main>
 </div>
-
-
-
-
-
-
-
-
 
 
 

@@ -27,43 +27,49 @@
 	
  	
 
-	<div class="phone">Call: <?php the_field('phone_number', 'option'); ?></div>
+<?php $phoneNumber = get_field('phone_number', 'option'); ?>
+<div class="phone">Call: <?php echo $phoneNumber; ?></div>
 
-
+<?php 
+$siteTitle = get_field('carpet_cleaning_title','option');  
+$locationName = get_field('primary_location_name', 'option');
+$logoURL = get_field('logo_url','option');
+?>
+	
 <div class="vcard" style="clear:both; text-align:center; padding:10px;">
    <strong class="fn org">
-	<?php if( get_field('carpet_cleaning_title','option') ): ?>
-		<span><?php the_field('carpet_cleaning_title', 'option'); ?></span>
+	<?php if( $siteTitle ): ?>
+		<span><?php echo $siteTitle; ?></span>
 	<?php else: ?>
 		<span>Heaven's Best Carpet Cleaners </span>
 	<?php endif; ?>
-	<?php the_field('primary_location_name', 'option'); ?>
+	<?php echo $locationName; ?>
 	</strong> 
      <div class="adr"> 
-		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
+		<img alt="Heaven's Best" src="<?php echo $logoURL; ?>"  class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
         <span class="locality"><?php the_field('city', 'option'); ?></span>, 
         <span class="region"><?php the_field('state_or_province', 'option'); ?></span>
         <span class="postal-code"><?php the_field('zip_code', 'option'); ?></span>
      </div>   
-   Phone: <span class="tel"><?php the_field('phone_number', 'option'); ?></span>
+   Phone: <span class="tel"><?php echo $phoneNumber; ?></span>
 	<div class="pricerange"><?php the_field('price_range', 'option'); ?></div>
 
 </div>
 	
 <div itemscope itemtype="http://schema.org/LocalBusiness" style="display:none;">
-	<span itemprop="name"><?php if( get_field('carpet_cleaning_title','option') ): ?>	
-		<?php the_field('carpet_cleaning_title', 'option'); ?>
+	<span itemprop="name"><?php if( $siteTitle ): ?>	
+		<?php echo $siteTitle; ?>
 	<?php else: ?> 
 		Heaven's Best Carpet Cleaners
-	<?php endif; ?>	<?php the_field('primary_location_name', 'option'); ?>
+	<?php endif; ?>	<?php echo $locationName; ?>
 	</span>
 	<span itemprop="url"><?php echo get_home_url(); ?></span>
-	<img itemprop="image" alt=" " src="<?php the_field('logo_url','option'); ?>" />
-	<span itemprop="telephone"><?php the_field('phone_number', 'option'); ?></span>
+	<img itemprop="image" alt=" " src="<?php echo $logoURL; ?>" />
+	<span itemprop="telephone"><?php echo $phoneNumber; ?></span>
 	<div itemprop="pricerange"> <?php the_field('price_range', 'option'); ?> </div>
 	<div class="address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress"> 
-		<img alt="Heaven's Best" src="<?php the_field('logo_url','option'); ?>"  class="photo" style="display:none;">
+		<img alt="Heaven's Best" src="<?php echo $logoURL; ?>"  class="photo" style="display:none;">
         <span class="street-address"><?php the_field('street_address', 'option'); ?></span><br>
         <span class="locality"><?php the_field('city', 'option'); ?></span>, 
         <span class="region"><?php the_field('state_or_province', 'option'); ?></span>
@@ -80,9 +86,9 @@
 	<div id="copyright">
 
 		<a href="//www.dmca.com/Protection/Status.aspx?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277" title="DMCA.com Protection Status" class="dmca-badge"> 
-			<img width=100 height=20 src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277"  alt="DMCA.com Protection Status" />
+			<img width=100 height=20 src="https://images.dmca.com/Badges/dmca-badge-w100-5x1-09.png?ID=f10a1261-83f1-46c2-b9f7-8124b6a69277" loading=lazy alt="DMCA.com Protection Status" />
 		</a>  
-		<script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+		<script defer src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
 		
 		<p>ADA Optimized</p>
 		
